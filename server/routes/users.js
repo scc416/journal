@@ -8,6 +8,10 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     res.json({ test: "test" });
   });
+  
+  router.get("/", (req, res) => {
+    res.json({ test: "test" });
+  });
 
   return router;
 };
