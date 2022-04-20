@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "start": "nodemon -L server.js",
+    "db:reset": "node bin/resetdb.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "chalk": "^5.0.1",
+    "cookie-session": "^2.0.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
