@@ -4,7 +4,7 @@ import { RECEIVE_USER } from "constants";
 const userReducer = (state = initUserState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
-      return { ...state, id: action.id };
+      return { ...state, username: action.username };
     default:
       return state;
   }

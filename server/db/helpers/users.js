@@ -1,20 +1,19 @@
 const queryGenerator = (db) => {
-  const getCurrentUser = async (value) => {
+  const getUserByValue = async (value) => {
     const values = [value];
     const queryString = `
       SELECT * FROM users 
-      WHERE id = $1;`;
+      WHERE username = $1;`;
 
     try {
-      const result = await db.query(queryString, values);
-      const userInfo = getFirstRecord(result);
-      return userInfo;
+      const { row } = await db.query(queryString, values);
+      return row.length && row[0];
     } catch (err) {
       console.log(err);
     }
   };
 
-  const postInfo = async (state) => {
+  const createNewUser = async (state) => {
     const values = [state];
     const queryString = `
       UPDATE users
@@ -29,7 +28,7 @@ const queryGenerator = (db) => {
       console.log(err);
     }
   };
-  return { getCurrentUser, postInfo };
+  return { getUserByValue, createNewUser };
 };
 
 module.exports = queryGenerator;
