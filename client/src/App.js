@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import axios from "axios";
 
 const App = () => {
-  const [editorState, setEditorState] = React.useState(() =>
+  const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
 
-  const editor = React.useRef(null);
+  const editor = useRef(null);
   function focusEditor() {
     editor.current.focus();
   }
