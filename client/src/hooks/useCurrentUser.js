@@ -9,7 +9,7 @@ const useCurrentUser = () => {
   const dispatch = useDispatch();
 
   const { hasUser, id } = useSelector(({ user }) => {
-    return { hasUser: "id" in user, id: user.id };
+    return { hasUser: "username" in user, id: user.id };
   });
 
   useEffect(() => {
