@@ -1,3 +1,3 @@
-export default (state, action) => {
-  return state;
-};
+import mode from "./mode";
+
+export default { mode };
