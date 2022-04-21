@@ -6,9 +6,11 @@ import Journal from "components/Journal";
 import Error from "components/Error";
 import Loading from "components/Loading";
 import useCurrentUser from "hooks/useCurrentUser";
+import useMode from "hooks/useMode";
 
 const App = () => {
   const hasUser = useCurrentUser();
+  const { darkMode, toggleDarkMode } = useMode();
   return (
     <>
       {!hasUser && <Loading />}
