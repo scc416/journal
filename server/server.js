@@ -16,6 +16,9 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
 

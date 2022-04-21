@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Editor, EditorState } from "draft-js";
+import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
+import axios from "axios";
 
 const App = () => {
   const [editorState, setEditorState] = React.useState(() =>
@@ -12,7 +13,26 @@ const App = () => {
     editor.current.focus();
   }
 
-  useEffect(() => console.log(editorState), [editorState]);
+  useEffect(() => {
+    (async () => {
+      const {
+        data: { info },
+      } = await axios.get("/api/users");
+      const parse = JSON.parse(info);
+
+      const state = convertFromRaw(parse);
+      console.log(state);
+      // const newData = data.state ? JSON.parse(data.state) : data;
+      setEditorState(EditorState.createWithContent(state));
+    })();
+  }, []);
+
+  const onChange = (state) => {
+    setEditorState(state);
+    const content = convertToRaw(state.getCurrentContent()); // state));
+    console.log(content);
+    (async () => await axios.post("/api/users/", { state: content }))();
+  };
 
   return (
     <div
@@ -22,7 +42,7 @@ const App = () => {
       <Editor
         ref={editor}
         editorState={editorState}
-        onChange={setEditorState}
+        onChange={onChange}
         placeholder="Write something!"
       />
     </div>

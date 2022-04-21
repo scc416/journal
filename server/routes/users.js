@@ -5,12 +5,26 @@ const bcrypt = require("bcryptjs");
 const queryGenerator = require("../db/helpers/users");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    res.json({ test: "test" });
+  const { getInfo, postInfo } = queryGenerator(db);
+
+  router.post("/", async (req, res) => {
+    const { state } = req.body;
+    console.log(req);
+    try {
+      const info = await postInfo(state);
+      res.json(info);
+    } catch (err) {
+      console.log(err);
+    }
   });
-  
-  router.get("/", (req, res) => {
-    res.json({ test: "test" });
+
+  router.get("/", async (req, res) => {
+    try {
+      const info = await getInfo();
+      res.json(info);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   return router;
