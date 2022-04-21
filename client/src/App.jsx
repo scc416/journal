@@ -7,13 +7,14 @@ import Error from "components/Error";
 import Loading from "components/Loading";
 import useCurrentUser from "hooks/useCurrentUser";
 import useMode from "hooks/useMode";
+import ToggleDarkModeButton from "components/ToggleDarkModeButton";
 
 const App = () => {
   const hasUser = useCurrentUser();
   const { darkMode, toggleDarkMode } = useMode();
   return (
     <div className={darkMode ? "dark" : "bright"}>
-      <button onClick={toggleDarkMode}>Toggle</button>
+      <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
       {!hasUser && <Loading />}
       {hasUser && (
         <Routes>
