@@ -7,19 +7,26 @@ import Error from "components/Error";
 import Loading from "components/Loading";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "helpers";
+import { getCurrentUsers } from "actions/users";
 
 const App = () => {
   const navigate = useNavigate();
-  const hasUser = useSelector((state) => "user" in state);
+  const dispatch = useDispatch();
+  const { hasUser, id } = useSelector(({ user }) => {
+    return { hasUser: "id" in user, id: user.id };
+  });
   useEffect(() => {
     if (hasUser) {
-      navigate(`${getTodayDate()}`);
+      console.log(id);
+      if (id) navigate(`/${getTodayDate()}`);
+      if (!id) navigate("/login");
     }
     if (!hasUser) {
+      dispatch(getCurrentUsers());
     }
-  }, [hasUser]);
+  }, [id]);
   return (
     <>
       {!hasUser && <Loading />}

@@ -1,11 +1,14 @@
 const queryGenerator = (db) => {
-  const getInfo = async () => {
-    const queryString = `SELECT * FROM users WHERE id = 1;`;
+  const getCurrentUser = async (value) => {
+    const values = [value];
+    const queryString = `
+      SELECT * FROM users 
+      WHERE id = $1;`;
 
     try {
-      const { rows } = await db.query(queryString);
-
-      return rows[0];
+      const result = await db.query(queryString, values);
+      const userInfo = getFirstRecord(result);
+      return userInfo;
     } catch (err) {
       console.log(err);
     }
@@ -26,7 +29,7 @@ const queryGenerator = (db) => {
       console.log(err);
     }
   };
-  return { getInfo, postInfo };
+  return { getCurrentUser, postInfo };
 };
 
 module.exports = queryGenerator;
