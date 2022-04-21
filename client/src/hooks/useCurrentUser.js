@@ -20,6 +20,7 @@ const useCurrentUser = () => {
     if (!hasUser) {
       dispatch(getCurrentUsers());
     }
+    // eslint-disable-next-line
   }, [hasUser]);
 
   return hasUser;
