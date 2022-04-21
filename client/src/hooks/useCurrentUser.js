@@ -7,19 +7,20 @@ import { getCurrentUsers } from "actions/users";
 const useCurrentUser = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { hasUser, id } = useSelector(({ user }) => {
     return { hasUser: "id" in user, id: user.id };
   });
+
   useEffect(() => {
     if (hasUser) {
-      console.log(id);
       if (id) navigate(`/${getTodayDate()}`);
       if (!id) navigate("/login");
     }
     if (!hasUser) {
       dispatch(getCurrentUsers());
     }
-  }, [id]);
+  }, [hasUser]);
 
   return hasUser;
 };
