@@ -1,5 +1,5 @@
 export const initModeState = {
-  darkMode: false,
+  darkMode: true,
 };
 
 export const initUserState = {};

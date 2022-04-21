@@ -53,7 +53,7 @@ module.exports = (db) => {
   });
 
   router.post("/logout", (req, res) => {
-    req.session = null;
+    req.session.user_id = null;
     res.json(null);
   });
 
