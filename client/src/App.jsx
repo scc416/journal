@@ -13,6 +13,7 @@ const App = () => {
   const { darkMode, toggleDarkMode } = useMode();
   return (
     <div className={darkMode ? "dark" : "bright"}>
+      <button onClick={toggleDarkMode}>Toggle</button>
       {!hasUser && <Loading />}
       {hasUser && (
         <Routes>

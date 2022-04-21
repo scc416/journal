@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-module.exports = (db) => {
+module.exports = () => {
   router.post("/", (req, res) => {
     const { darkMode } = req.body;
     req.session.dark_mode = darkMode;
@@ -10,7 +10,7 @@ module.exports = (db) => {
 
   router.get("/", (req, res) => {
     const { dark_mode } = req.session;
-    if (!dark_mode) return res.json(true);
+    if (!dark_mode) return res.json(false);
     res.json(dark_mode);
   });
 
