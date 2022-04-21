@@ -1,4 +1,4 @@
-import { initState } from "../constants";
+import { initState } from "constants";
 
 const modeReducer = (state = initState, action) => {
   return state;
