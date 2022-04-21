@@ -15,6 +15,7 @@ const App = () => {
   const hasUser = useSelector((state) => "user" in state);
   useEffect(() => {
     if (hasUser) {
+      navigate(`${getTodayDate()}`);
     }
     if (!hasUser) {
     }
