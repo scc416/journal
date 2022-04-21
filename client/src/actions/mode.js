@@ -7,12 +7,10 @@ export const toggleMode = () => {
       const {
         mode: { darkMode },
       } = getState();
-      console.log("TOGGLE MODE");
-      const { data } = await axios.post("/api/mode", { darkMode: !darkMode });
-      console.log(data);
+      const { data } = await axios.post("/api/mode", { darkMode });
       dispatch({ type: TOGGLE_MODE });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   };
 };
@@ -25,8 +23,8 @@ export const getMode = () => {
       } = getState();
       const { data: darkMode } = await axios.get("/api/mode");
       if (prevDarkMode !== darkMode) dispatch({ type: TOGGLE_MODE });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   };
 };

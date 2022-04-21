@@ -11,7 +11,7 @@ const useMode = () => {
 
   useEffect(() => {
     dispatch(getMode());
-  });
+  }, []);
 
   return { darkMode, toggleDarkMode };
 };

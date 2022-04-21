@@ -6,8 +6,8 @@ export const getCurrentUsers = () => {
     try {
       const { data: username } = await axios.get("/api/users");
       dispatch({ type: RECEIVE_USER, username });
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.log(err);
     }
   };
 };

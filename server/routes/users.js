@@ -48,7 +48,7 @@ module.exports = (db) => {
       req.session.user_id = newUser.id;
       res.json(username);
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     }
   });
 
