@@ -21,9 +21,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // Separated Routes for each Resource
 const usersRoutes = require("./routes/users");
+const journalsRoutes = require("./routes/journals");
 
 // Mount all resource routes
 app.use("/api/users", usersRoutes(db));
+app.use("/api/journals", journalsRoutes(db));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
