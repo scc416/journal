@@ -9,8 +9,9 @@ module.exports = () => {
   });
 
   router.get("/", (req, res) => {
+    const hasSetting = "dark_mode" in req.session;
+    if (!hasSetting) return res.json(true);
     const { dark_mode } = req.session;
-    if (!dark_mode) return res.json(true);
     res.json(dark_mode);
   });
 
