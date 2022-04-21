@@ -1,3 +1,5 @@
 import mode from "./mode";
 
-export default { mode };
+const reducers = { mode };
+
+export default reducers;
