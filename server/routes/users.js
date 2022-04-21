@@ -9,7 +9,6 @@ module.exports = (db) => {
 
   router.post("/", async (req, res) => {
     const { state } = req.body;
-    console.log(req);
     try {
       const info = await postInfo(state);
       res.json(info);
