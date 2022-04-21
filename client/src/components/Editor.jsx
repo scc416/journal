@@ -3,7 +3,7 @@ import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import axios from "axios";
 
-const App = () => {
+const Editor = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -19,18 +19,14 @@ const App = () => {
         data: { info },
       } = await axios.get("/api/users");
       const parse = JSON.parse(info);
-
       const state = convertFromRaw(parse);
-      console.log(state);
-      // const newData = data.state ? JSON.parse(data.state) : data;
       setEditorState(EditorState.createWithContent(state));
     })();
   }, []);
 
   const onChange = (state) => {
     setEditorState(state);
-    const content = convertToRaw(state.getCurrentContent()); // state));
-    console.log(content);
+    const content = convertToRaw(state.getCurrentContent());
     (async () => await axios.post("/api/users/", { state: content }))();
   };
 
@@ -49,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Editor;
