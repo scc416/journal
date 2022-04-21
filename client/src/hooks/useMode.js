@@ -11,6 +11,7 @@ const useMode = () => {
 
   useEffect(() => {
     dispatch(getMode());
+    // eslint-disable-next-line
   }, []);
 
   return { darkMode, toggleDarkMode };
