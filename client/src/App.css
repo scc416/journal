@@ -7,10 +7,29 @@ body {
   overflow-y: scroll;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #root {
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#root > div {
+  width: 100%;
+  height: 100%;
+}
+
+.dark {
+  background: #1f1e21;
+  color: #d0d0d0;
+}
+
+.bright {
+  background: #e2e2e2;
+  color: #353535;
 }

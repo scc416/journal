@@ -12,7 +12,7 @@ const App = () => {
   const hasUser = useCurrentUser();
   const { darkMode, toggleDarkMode } = useMode();
   return (
-    <>
+    <div className={darkMode ? "dark" : "bright"}>
       {!hasUser && <Loading />}
       {hasUser && (
         <Routes>
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/:date" element={<Journal />} />
         </Routes>
       )}
-    </>
+    </div>
   );
 };
 
