@@ -14,10 +14,11 @@ const LogIn = () => {
       <h1>Register</h1>
       <form onSubmit={submitHandler}>
         <FormGroup label="Username">
-          <InputGroup />
+          <InputGroup large={true} />
         </FormGroup>
         <FormGroup label="Password">
           <InputGroup
+            large={true}
             rightElement={
               <LockButton {...{ showPassword, toggleShowPassword }} />
             }
@@ -27,6 +28,7 @@ const LogIn = () => {
         </FormGroup>
         <FormGroup label="Confirm Password">
           <InputGroup
+            large={true}
             rightElement={
               <LockButton {...{ showPassword, toggleShowPassword }} />
             }
@@ -34,7 +36,9 @@ const LogIn = () => {
             type={showPassword ? "text" : "password"}
           />
         </FormGroup>
-        <Button type="submit">Register</Button>
+        <Button type="submit" large={true}>
+          Register
+        </Button>
       </form>
       <div className="user-link">
         Already a member? <Link to="/login">Login</Link>

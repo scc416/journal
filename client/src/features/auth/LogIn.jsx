@@ -21,6 +21,7 @@ const LogIn = () => {
       <form onSubmit={submitHandler}>
         <FormGroup label="Username">
           <InputGroup
+            large={true}
             inputRef={usernameRef}
             inputprops={{ ref: usernameRef }}
           />
@@ -29,13 +30,16 @@ const LogIn = () => {
           <InputGroup
             inputRef={passwordRef}
             autoComplete="on"
+            large={true}
             rightElement={
               <LockButton {...{ showPassword, toggleShowPassword }} />
             }
             type={showPassword ? "text" : "password"}
           />
         </FormGroup>
-        <Button type="submit">Login</Button>
+        <Button type="submit" large={true}>
+          Login
+        </Button>
       </form>
       <div className="user-link">
         Not a member? <Link to="/register">Register</Link>
