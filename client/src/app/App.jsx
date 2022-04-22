@@ -1,13 +1,13 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import LogIn from "features/user/UserSession/LogIn";
-import Register from "features/user/UserSession/Register";
+import LogIn from "features/user/LogIn";
+import Register from "features/user/Register";
 import Journal from "features/journal/Journal";
-import Error from "common/components/Error";
+import Error from "features/error/Error";
 import Loading from "features/loading/Loading";
 import useCurrentUser from "common/hooks/useCurrentUser";
 import useMode from "common/hooks/useMode";
-import ToggleDarkModeButton from "common/components/ToggleDarkModeButton";
+import ToggleDarkModeButton from "features/mode/ToggleDarkModeButton";
 
 const App = () => {
   const hasUser = useCurrentUser();
