@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const TOGGLE_MODE = "TOGGLE_MODE";
+export const TOGGLE_MODE = "mode/TOGGLE_MODE";
 
 const initModeState = {
   darkMode: true,
