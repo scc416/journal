@@ -1,4 +1,4 @@
-import { Button, InputGroup, Intent, FormGroup } from "@blueprintjs/core";
+import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 import useShowPassword from "hooks/useShowPassword";
 import LockButton from "./LockButton";
@@ -34,7 +34,7 @@ const LogIn = () => {
         <Button type="submit">Register</Button>
       </form>
       <div className="user-link">
-        Already a member? <Link to="/login">Login</Link>.
+        Already a member? <Link to="/login">Login</Link>
       </div>
     </>
   );

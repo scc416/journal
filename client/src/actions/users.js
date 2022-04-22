@@ -1,5 +1,5 @@
 import axios from "axios";
-import { RECEIVE_USER } from "constants";
+import { RECEIVE_USER, UPDATE_LOGIN_INPUT } from "constants";
 
 export const getCurrentUsers = () => {
   return async (dispatch) => {
@@ -10,4 +10,8 @@ export const getCurrentUsers = () => {
       console.log(err);
     }
   };
+};
+
+export const updateLoginDetails = (key, e) => {
+  return { type: UPDATE_LOGIN_INPUT, key, value: e.target.value };
 };
