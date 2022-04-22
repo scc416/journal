@@ -11,8 +11,8 @@ module.exports = (db) => {
     try {
       const info = await postInfo(state);
       res.json(info);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      res.json({ error });
     }
   });
 
@@ -21,7 +21,7 @@ module.exports = (db) => {
       const info = await getInfo();
       res.json(info);
     } catch (err) {
-      console.log(err);
+      res.json({ error });
     }
   });
 

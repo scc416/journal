@@ -1,4 +1,5 @@
 import axios from "axios";
+import { displayError } from "features/error/errorSlice";
 
 export const TOGGLE_MODE = "mode/TOGGLE_MODE";
 
@@ -15,7 +16,7 @@ export const toggleMode = () => {
       const { data } = await axios.post("/api/mode", { darkMode });
       if (data !== darkMode) dispatch({ type: TOGGLE_MODE });
     } catch (err) {
-      console.log(err);
+      dispatch(displayError(err));
     }
   };
 };
@@ -29,7 +30,7 @@ export const getMode = () => {
       const { data: darkMode } = await axios.get("/api/mode");
       if (prevDarkMode !== darkMode) dispatch({ type: TOGGLE_MODE });
     } catch (err) {
-      console.log(err);
+      dispatch(displayError(err));
     }
   };
 };

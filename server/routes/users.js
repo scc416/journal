@@ -23,7 +23,7 @@ module.exports = (db) => {
       req.session.user_id = user.id;
       res.json(user.username);
     } catch (err) {
-      console.log(err);
+      res.json({ error });
     }
   });
 
@@ -48,7 +48,7 @@ module.exports = (db) => {
       req.session.user_id = newUser.id;
       res.json(username);
     } catch (err) {
-      console.log(err);
+      res.json({ error });
     }
   });
 
@@ -63,8 +63,8 @@ module.exports = (db) => {
     try {
       const user = await getUserByValue("id", user_id);
       res.json(user.username);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      res.json({ error });
     }
   });
 

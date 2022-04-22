@@ -1,7 +1,7 @@
 import axios from "axios";
+import { displayError } from "features/error/errorSlice";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
-
 const initState = {};
 
 export const getCurrentUsers = () => {
@@ -10,7 +10,7 @@ export const getCurrentUsers = () => {
       const { data: username } = await axios.get("/api/users");
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (err) {
-      console.log(err);
+      dispatch(displayError(err));
     }
   };
 };
