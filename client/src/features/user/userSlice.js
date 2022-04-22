@@ -1,11 +1,11 @@
 import axios from "axios";
 
+const RECEIVE_USER = "RECEIVE_USER";
+
 const initUserState = {
   login: null,
   register: null,
 };
-
-const RECEIVE_USER = "RECEIVE_USER";
 
 export const getCurrentUsers = () => {
   return async (dispatch) => {
