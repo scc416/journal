@@ -13,6 +13,8 @@ export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 export const UPDATE_LOGIN_INPUT = "UPDATE_LOGIN_INPUT";
 export const UPDATE_REGISTER_INPUT = "UPDATE_REGISTER_INPUT";
+export const CLEAR_LOGIN_INPUT = "CLEAR_LOGIN_INPUT";
+export const CLEAR_REGISTER_INPUT = "CLEAR_REGISTER_INPUT";
 
 export const USERNAME = "username";
 export const PASSWORD = "password";

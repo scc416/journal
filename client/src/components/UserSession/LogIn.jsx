@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import useShowPassword from "hooks/useShowPassword";
 import LockButton from "./LockButton";
 import { USERNAME, PASSWORD } from "constants";
-import { updateLoginDetails } from "actions/users";
+import { updateLoginDetails, clearLoginInput } from "actions/users";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const LogIn = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
@@ -12,6 +13,9 @@ const LogIn = () => {
     e.preventDefault();
   };
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(clearLoginInput);
+  }, []);
   const { [USERNAME]: username, [PASSWORD]: password } = useSelector(
     ({ user: { login } }) => {
       return {
