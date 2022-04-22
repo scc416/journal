@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const TOGGLE_MODE = "mode/TOGGLE_MODE";
 
-const initModeState = {
+const initState = {
   darkMode: true,
 };
 
@@ -34,7 +34,7 @@ export const getMode = () => {
   };
 };
 
-const modeReducer = (state = initModeState, action) => {
+const reducer = (state = initState, action) => {
   switch (action.type) {
     case TOGGLE_MODE:
       return { ...state, darkMode: !state.darkMode };
@@ -43,4 +43,4 @@ const modeReducer = (state = initModeState, action) => {
   }
 };
 
-export default modeReducer;
+export default reducer;

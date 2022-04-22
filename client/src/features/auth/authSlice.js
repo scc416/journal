@@ -2,7 +2,7 @@ import axios from "axios";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
 
-const initUserState = {};
+const initState = {};
 
 export const getCurrentUsers = () => {
   return async (dispatch) => {
@@ -15,7 +15,7 @@ export const getCurrentUsers = () => {
   };
 };
 
-const userReducer = (state = initUserState, action) => {
+const reducer = (state = initState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
       return { ...state, username: action.payload.username };
@@ -24,4 +24,4 @@ const userReducer = (state = initUserState, action) => {
   }
 };
 
-export default userReducer;
+export default reducer;
