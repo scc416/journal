@@ -14,6 +14,7 @@ const LogIn = () => {
   };
   useEffect(() => {
     dispatch(clearRegisterInput);
+    // eslint-disable-next-line
   }, []);
   return (
     <>

@@ -15,6 +15,7 @@ const LogIn = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(clearLoginInput);
+    // eslint-disable-next-line
   }, []);
   const { [USERNAME]: username, [PASSWORD]: password } = useSelector(
     ({ user: { login } }) => {
