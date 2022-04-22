@@ -1,7 +1,7 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import LogIn from "features/user/LogIn";
-import Register from "features/user/Register";
+import LogIn from "features/auth/LogIn";
+import Register from "features/auth/Register";
 import Journal from "features/journal/Journal";
 import Error from "features/error/Error";
 import Loading from "features/loading/Loading";
