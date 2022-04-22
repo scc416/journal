@@ -7,12 +7,15 @@ import { useRef } from "react";
 
 const LogIn = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
+
   const usernameRef = useRef();
   const passwordRef = useRef();
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(usernameRef.current.value);
+    const username = usernameRef.current.value;
+    const password = passwordRef.current.value;
+    console.log(username, password);
   };
 
   return (
@@ -20,11 +23,7 @@ const LogIn = () => {
       <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <FormGroup label="Username">
-          <InputGroup
-            large={true}
-            inputRef={usernameRef}
-            inputprops={{ ref: usernameRef }}
-          />
+          <InputGroup large={true} inputRef={usernameRef} />
         </FormGroup>
         <FormGroup label="Password">
           <InputGroup
