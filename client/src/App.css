@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@import "normalize.css";
+@import "@blueprintjs/icons/lib/css/blueprint-icons.css";
+@import "@blueprintjs/core/lib/css/blueprint.css";
 
 body {
   margin: 0;
@@ -40,21 +43,12 @@ body {
 
 .DarkModeButton {
   align-self: flex-end;
-  margin: 0.5em;
-  width: 2em;
-  height: 2em;
-  border-radius: 0.2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 1em 1em 0 0;
 }
 
-.dark .DarkModeButton {
-  background: #353538;
-}
-
-.bright .DarkModeButton {
-  background: #f9f9f9;
+.DarkModeButton svg {
+  position: relative;
+  top: 0.1em;
 }
 
 .container {

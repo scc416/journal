@@ -1,4 +1,5 @@
 import "./App.css";
+import "components/UserSession/UserSession.css";
 import { Routes, Route } from "react-router-dom";
 import LogIn from "components/UserSession/LogIn";
 import Register from "components/UserSession/Register";
@@ -13,7 +14,7 @@ const App = () => {
   const hasUser = useCurrentUser();
   const { darkMode, toggleDarkMode } = useMode();
   return (
-    <div className={darkMode ? "dark" : "bright"}>
+    <div className={darkMode ? "bp4-dark dark" : "bright"}>
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
       <div className="container">
         {!hasUser && <Loading />}
