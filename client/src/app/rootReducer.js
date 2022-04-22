@@ -1,6 +1,6 @@
 import mode from "../features/mode/modeSlice";
-import user from "../features/auth/authSlice";
+import auth from "../features/auth/authSlice";
 
-const reducers = { mode, user };
+const reducers = { mode, auth };
 
 export default reducers;

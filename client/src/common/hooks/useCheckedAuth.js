@@ -4,26 +4,26 @@ import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "common/helpers";
 import { getCurrentUsers } from "features/auth/authSlice";
 
-const useCurrentUser = () => {
+const useCheckedAuth = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { hasUser, id } = useSelector(({ user }) => {
-    return { hasUser: "username" in user, id: user.id };
+  const { hasCheckedAuth, id } = useSelector(({ auth }) => {
+    return { hasCheckedAuth: "username" in auth, id: auth.id };
   });
 
   useEffect(() => {
-    if (hasUser) {
+    if (hasCheckedAuth) {
       if (id) navigate(`/${getTodayDate()}`);
       if (!id) navigate("/login");
     }
-    if (!hasUser) {
+    if (!hasCheckedAuth) {
       dispatch(getCurrentUsers());
     }
     // eslint-disable-next-line
-  }, [hasUser]);
+  }, [hasCheckedAuth]);
 
-  return hasUser;
+  return hasCheckedAuth;
 };
 
-export default useCurrentUser;
+export default useCheckedAuth;
