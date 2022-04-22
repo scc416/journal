@@ -9,6 +9,7 @@ export const displayError = (error) => {
     payload: { error },
   };
 };
+
 export const removeError = { type: REMOVE_ERROR };
 
 const reducer = (state = initState, action) => {
