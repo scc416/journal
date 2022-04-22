@@ -23,7 +23,7 @@ const LogIn = () => {
             type={showPassword ? "text" : "password"}
           />
         </FormGroup>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Login</Button>
       </form>
       <div className="user-link">
         Not a member? <Link to="/register">Register</Link>.

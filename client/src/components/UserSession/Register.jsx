@@ -31,7 +31,7 @@ const LogIn = () => {
             type={showPassword ? "text" : "password"}
           />
         </FormGroup>
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Register</Button>
       </form>
       <div className="user-link">
         Already a member? <Link to="/login">Login</Link>.
