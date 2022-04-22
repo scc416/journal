@@ -1,5 +1,5 @@
 import mode from "../features/mode/modeSlice";
-import user from "../features/user/UserSession/userSlice";
+import user from "../features/user/userSlice";
 
 const reducers = { mode, user };
 
