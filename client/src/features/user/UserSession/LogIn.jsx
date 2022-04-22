@@ -1,42 +1,43 @@
 import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
-import useShowPassword from "hooks/useShowPassword";
+import useShowPassword from "common/hooks/useShowPassword";
 import LockButton from "./LockButton";
+import { useRef } from "react";
 
 const LogIn = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(usernameRef.current.value);
   };
+
   return (
     <>
-      <h1>Register</h1>
+      <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <FormGroup label="Username">
-          <InputGroup />
+          <InputGroup
+            inputRef={usernameRef}
+            inputprops={{ ref: usernameRef }}
+          />
         </FormGroup>
         <FormGroup label="Password">
           <InputGroup
+            inputRef={passwordRef}
+            autoComplete="on"
             rightElement={
               <LockButton {...{ showPassword, toggleShowPassword }} />
             }
-            autoComplete="on"
             type={showPassword ? "text" : "password"}
           />
         </FormGroup>
-        <FormGroup label="Confirm Password">
-          <InputGroup
-            rightElement={
-              <LockButton {...{ showPassword, toggleShowPassword }} />
-            }
-            autoComplete="on"
-            type={showPassword ? "text" : "password"}
-          />
-        </FormGroup>
-        <Button type="submit">Register</Button>
+        <Button type="submit">Login</Button>
       </form>
       <div className="user-link">
-        Already a member? <Link to="/login">Login</Link>
+        Not a member? <Link to="/register">Register</Link>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMode, getMode } from "actions/mode";
+import { toggleMode, getMode } from "features/mode/mode";
 import { useEffect } from "react";
 
 const useMode = () => {

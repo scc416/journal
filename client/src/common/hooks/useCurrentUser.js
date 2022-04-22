@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "helpers";
-import { getCurrentUsers } from "actions/users";
+import { getCurrentUsers } from "features/user/users";
 
 const useCurrentUser = () => {
   const navigate = useNavigate();
