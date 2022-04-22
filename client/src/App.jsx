@@ -16,17 +16,15 @@ const App = () => {
   return (
     <div className={darkMode ? "bp4-dark dark" : "bright"}>
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
-      <div className="container">
-        {!hasUser && <Loading />}
-        {hasUser && (
-          <Routes>
-            <Route path="/login" element={<LogIn />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/error" element={<Error />} />
-            <Route path="/:date" element={<Journal />} />
-          </Routes>
-        )}
-      </div>
+      {!hasUser && <Loading />}
+      {hasUser && (
+        <Routes>
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/error" element={<Error />} />
+          <Route path="/:date" element={<Journal />} />
+        </Routes>
+      )}
     </div>
   );
 };

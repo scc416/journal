@@ -2,3 +2,8 @@ button {
   background: #518dd0;
   color: #ffffff;
 }
+
+.user-link {
+  text-align: center;
+  margin-top: 0.5em;
+}

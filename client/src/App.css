@@ -15,6 +15,8 @@ body {
 
 * {
   box-sizing: border-box;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 #root {
@@ -29,6 +31,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .dark {
@@ -42,18 +45,12 @@ body {
 }
 
 .DarkModeButton {
-  align-self: flex-end;
-  margin: 1em 1em 0 0;
+  position: absolute;
+  top: 1em;
+  right: 1em;
 }
 
 .DarkModeButton svg {
   position: relative;
   top: 0.1em;
-}
-
-.container {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
