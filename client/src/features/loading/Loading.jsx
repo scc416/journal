@@ -1,7 +1,7 @@
-import "./Loading.css"
+import { Spinner } from "@blueprintjs/core";
 
 const Loading = () => {
-  return <div className="Spin"></div>;
+  return <Spinner />;
 };
 
 export default Loading;
