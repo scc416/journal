@@ -2,43 +2,31 @@ import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
 import { Link } from "react-router-dom";
 import useShowPassword from "hooks/useShowPassword";
 import LockButton from "./LockButton";
-import { USERNAME, PASSWORD } from "constants";
-import { updateLoginDetails, clearLoginInput } from "actions/users";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useRef } from "react";
 
 const LogIn = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(usernameRef.current.value);
   };
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(clearLoginInput);
-    // eslint-disable-next-line
-  }, []);
-  const { [USERNAME]: username, [PASSWORD]: password } = useSelector(
-    ({ user: { login } }) => {
-      return {
-        [USERNAME]: login && USERNAME in login ? login[USERNAME] : "",
-        [PASSWORD]: login && PASSWORD in login ? login[PASSWORD] : "",
-      };
-    }
-  );
+
   return (
     <>
       <h1>Login</h1>
       <form onSubmit={submitHandler}>
         <FormGroup label="Username">
           <InputGroup
-            value={username}
-            onChange={(e) => dispatch(updateLoginDetails(USERNAME, e))}
+            inputRef={usernameRef}
+            inputprops={{ ref: usernameRef }}
           />
         </FormGroup>
         <FormGroup label="Password">
           <InputGroup
-            value={password}
-            onChange={(e) => dispatch(updateLoginDetails(PASSWORD, e))}
+            inputRef={passwordRef}
             autoComplete="on"
             rightElement={
               <LockButton {...{ showPassword, toggleShowPassword }} />
