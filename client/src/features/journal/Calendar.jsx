@@ -1,30 +1,25 @@
 import { DatePicker } from "@blueprintjs/datetime";
 import { Classes } from "@blueprintjs/core";
 import { useNavigate } from "react-router-dom";
-import { formatDate } from "common/helpers";
-import { useSelector } from "react-redux";
-import moment from "moment";
+import { formatDate, today, toDate } from "common/helpers";
 
-const Calendar = ({ defaultDate }) => {
+const Calendar = ({ defaultValue, disabledDays, minDate }) => {
   const navigate = useNavigate();
-  const journals = useSelector(({ journals }) => journals);
-  const dates = Object.keys(journals);
+  const changeHandler = (date) => {
+    if (date) navigate(`/journal/${formatDate(date)}`);
+  };
+
   return (
     <DatePicker
-      className={Classes.ELEVATION_1}
-      showActionsBar={true}
-      maxDate={moment().toDate()}
-      minDate={
-        (dates.length && moment(dates[0]).subtract(1, "days").toDate()) ||
-        moment().subtract(1, "days").toDate()
-      }
-      defaultValue={defaultDate && moment(defaultDate).toDate()}
-      highlightCurrentDay={true}
-      // dayPickerProps={{
-      //   disabledDays: (date) => dates.includes(formatDate(date)),
-      // }}
-      onChange={(date) => {
-        if (date) navigate(`/journal/${formatDate(date)}`);
+      {...{
+        minDate,
+        defaultValue,
+        dayPickerProps: { disabledDays },
+        className: Classes.ELEVATION_1,
+        highlightCurrentDay: true,
+        showActionsBar: true,
+        onChange: changeHandler,
+        maxDate: today(),
       }}
     />
   );

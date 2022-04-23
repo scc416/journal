@@ -1,10 +1,12 @@
 import moment from "moment";
-import { convertFromRaw } from "draft-js";
 
+export const today = () => moment().toDate();
+export const toDate = (date) => moment(date).toDate();
 export const getTodayDate = () => moment().format("YYYY-MM-DD");
 export const formatDate = (date) => moment(date).format("YYYY-MM-DD");
+const checkIfValid = (date) => moment(date).isValid();
 export const getFormattedDate = (date) =>
-  (moment(date).isValid() && formatDate(date)) || getTodayDate();
+  checkIfValid(date) && formatDate(date);
 
 export const formatJournals = (data) => {
   const result = {};
