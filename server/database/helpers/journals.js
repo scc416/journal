@@ -8,6 +8,10 @@ const queryGenerator = (db) => {
 
     try {
       const { rows } = await db.query(queryString, values);
+      for (const row of rows) {
+        const { content } = row;
+        row.content = JSON.parse(content);
+      }
       return rows;
     } catch (e) {
       throw e;
