@@ -26,7 +26,17 @@ export const logIn = (id, password) => {
       console.log(username);
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (e) {
-      console.log(e);
+      dispatch(displayError(e.response.data));
+    }
+  };
+};
+
+export const logout = () => {
+  return async (dispatch) => {
+    try {
+      const { data: username } = await axios.post("/api/users/logout");
+      dispatch({ type: RECEIVE_USER, payload: { username } });
+    } catch (e) {
       dispatch(displayError(e.response.data));
     }
   };
