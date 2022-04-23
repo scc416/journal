@@ -2,7 +2,7 @@ import axios from "axios";
 import { displayError } from "features/error/errorSlice";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
-const initState = {};
+const initState = null;
 
 export const getCurrentUser = () => {
   return async (dispatch) => {
@@ -60,7 +60,8 @@ export const register = (id, password, confirmPassword) => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
-      return { ...state, username: action.payload.username };
+      if (!action.payload.username) return "";
+      return action.payload.username;
     default:
       return state;
   }

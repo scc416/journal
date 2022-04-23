@@ -5,18 +5,18 @@ import { getCurrentUser } from "features/auth/authSlice";
 const useCheckedAuth = () => {
   const dispatch = useDispatch();
 
-  const { hasCheckedAuth } = useSelector(({ auth }) => {
-    return { hasCheckedAuth: "username" in auth };
+  const { hasCheckedUsername, username } = useSelector(({ username }) => {
+    return { hasCheckedUsername: username !== null, username };
   });
 
   useEffect(() => {
-    if (!hasCheckedAuth) {
+    if (!hasCheckedUsername) {
       dispatch(getCurrentUser());
     }
     // eslint-disable-next-line
-  }, [hasCheckedAuth]);
+  }, [hasCheckedUsername]);
 
-  return hasCheckedAuth;
+  return { hasCheckedUsername, username };
 };
 
 export default useCheckedAuth;

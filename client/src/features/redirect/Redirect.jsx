@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "common/helpers";
 import Loading from "../loading/Loading";
+import useCurrentUser from "common/hooks/useCurrentUser";
 
 const Redirect = () => {
   const navigate = useNavigate();
-  const username = useSelector(({ auth }) => auth.username);
-  const url = username ? `/journal/${getTodayDate()}` : "/login";
+  const { username } = useCurrentUser();
+  const url = username === "" ? "/login" : `/journal/${getTodayDate()}`;
 
   useEffect(() => {
     navigate(url);
