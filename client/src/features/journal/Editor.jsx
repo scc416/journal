@@ -17,10 +17,8 @@ const JournalEditor = () => {
   useEffect(() => {
     (async () => {
       try {
-        const {
-          data: { info },
-        } = await axios.get("/api/journals");
-        console.log(info);
+        const { data } = await axios.get("/api/journals");
+        console.log(data);
         // const parse = JSON.parse(info);
         // const state = convertFromRaw(parse);
         // setEditorState(EditorState.createWithContent(state));

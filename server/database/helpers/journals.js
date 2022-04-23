@@ -34,7 +34,7 @@ const queryGenerator = (db) => {
 
     try {
       const { rows } = await db.query(querySelectString, values1);
-      console.log(rows);
+
       const result = rows.length
         ? await db.query(queryUpdateString, values2)
         : await db.query(queryInsertString, values2);
