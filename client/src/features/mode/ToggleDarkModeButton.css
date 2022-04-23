@@ -1,0 +1,10 @@
+.DarkModeButton {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+.DarkModeButton svg {
+  position: relative;
+  top: 0.1em;
+}
