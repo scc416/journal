@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   today,
   toDate,
@@ -26,20 +26,19 @@ const useJournal = (date) => {
     return !hasJorunal && !isToday;
   };
 
-  const validDate = !(
-    !formattedDate ||
-    disabledDays(date) ||
-    formattedDate !== date
-  );
+  const dateIsAvailable = !disabledDays(date);
+  const correctDateFormat = formattedDate === date;
+
+  const validDate = formattedDate && dateIsAvailable && correctDateFormat;
 
   useEffect(() => {
     dispatch(getJournals());
   }, []);
 
   useEffect(() => {
-    if (!formattedDate || disabledDays(date)) {
+    if (!formattedDate || !dateIsAvailable) {
       navigate(`/journal/${getTodayDate()}`);
-    } else if (formattedDate !== date) {
+    } else if (!correctDateFormat) {
       navigate(`/journal/${formattedDate}`);
     }
   }, [validDate]);
