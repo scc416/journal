@@ -9,7 +9,6 @@ const Calendar = ({ defaultDate }) => {
   const navigate = useNavigate();
   const journals = useSelector(({ journals }) => journals);
   const dates = Object.keys(journals);
-  console.log(dates);
   return (
     <DatePicker
       className={Classes.ELEVATION_1}
