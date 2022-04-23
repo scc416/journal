@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
-const queryGenerator = require("../db/helpers/users");
+const queryGenerator = require("../database/helpers/users");
 
 module.exports = (db) => {
   const { getUserByValue, createNewUser } = queryGenerator(db);

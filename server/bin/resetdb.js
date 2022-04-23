@@ -15,10 +15,10 @@ const db = new Client(dbParams);
 // Loads the schema files from db/schema
 const runSchemaFiles = async () => {
   console.log(`-> Loading Schema Files ...`);
-  const schemaFilenames = fs.readdirSync("./db/schema");
+  const schemaFilenames = fs.readdirSync("./database/schema");
 
   for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./db/schema/${fn}`, "utf8");
+    const sql = fs.readFileSync(`./database/schema/${fn}`, "utf8");
     console.log(`\t-> Running ${fn}`);
     await db.query(sql);
   }
@@ -26,10 +26,10 @@ const runSchemaFiles = async () => {
 
 const runSeedFiles = async () => {
   console.log(`-> Loading Seeds ...`);
-  const schemaFilenames = fs.readdirSync("./db/seeds");
+  const schemaFilenames = fs.readdirSync("./database/seeds");
 
   for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./db/seeds/${fn}`, "utf8");
+    const sql = fs.readFileSync(`./database/seeds/${fn}`, "utf8");
     console.log(`\t-> Running ${fn}`);
     await db.query(sql);
   }
