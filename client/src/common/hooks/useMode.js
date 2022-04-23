@@ -5,7 +5,7 @@ import { useEffect } from "react";
 const useMode = () => {
   const dispatch = useDispatch();
 
-  const darkMode = useSelector(({ mode: { darkMode } }) => darkMode);
+  const darkMode = useSelector(({ mode }) => mode);
 
   const toggleDarkMode = () => dispatch(toggleMode());
 
