@@ -1,4 +1,4 @@
-const initState = { error: null };
+const initState = { error: null, trackErrorChange: true };
 
 const DISPLAY_ERROR = "error/DISPLAY_ERROR";
 const REMOVE_ERROR = "error/REMOVE_ERROR";
@@ -15,7 +15,11 @@ export const removeError = { type: REMOVE_ERROR };
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case DISPLAY_ERROR:
-      return { ...state, error: action.payload.error };
+      return {
+        ...state,
+        error: action.payload.error,
+        trackErrorChange: !state.trackErrorChange,
+      };
     case REMOVE_ERROR:
       return { ...state, error: null };
     default:

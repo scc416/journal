@@ -5,7 +5,11 @@ import { removeError } from "features/error/errorSlice";
 
 const Error = () => {
   const dispatch = useDispatch();
-  const error = useSelector((state) => state.error.error);
+  const { error, trackErrorChange } = useSelector(
+    ({ error: { error, trackErrorChange } }) => {
+      return { error, trackErrorChange };
+    }
+  );
   const [displayedError, setDisplayedError] = useState(error);
 
   useEffect(() => {
@@ -17,7 +21,7 @@ const Error = () => {
 
     setDisplayedError((prev) => error);
     // eslint-disable-next-line
-  }, [error]);
+  }, [trackErrorChange]);
   return (
     displayedError && (
       <Toaster>
