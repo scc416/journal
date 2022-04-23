@@ -33,6 +33,7 @@ const useJournal = (date) => {
 
   useEffect(() => {
     dispatch(getJournals());
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -41,6 +42,7 @@ const useJournal = (date) => {
     } else if (!correctDateFormat) {
       navigate(`/journal/${formattedDate}`);
     }
+    // eslint-disable-next-line
   }, [validDate]);
 
   return { validDate, disabledDays, minDate, defaultValue: toDate(date), date };

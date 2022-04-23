@@ -1,7 +1,7 @@
 import { DatePicker } from "@blueprintjs/datetime";
 import { Classes } from "@blueprintjs/core";
 import { useNavigate } from "react-router-dom";
-import { formatDate, today, toDate } from "common/helpers";
+import { formatDate, today } from "common/helpers";
 
 const Calendar = ({ defaultValue, disabledDays, minDate }) => {
   const navigate = useNavigate();
