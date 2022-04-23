@@ -13,10 +13,6 @@ const useCheckedAuth = () => {
   });
 
   useEffect(() => {
-    if (hasCheckedAuth) {
-      if (id) navigate(`/${getTodayDate()}`);
-      if (!id) navigate("/login");
-    }
     if (!hasCheckedAuth) {
       dispatch(getCurrentUser());
     }
