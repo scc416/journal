@@ -6,8 +6,8 @@ const queryGenerator = (db) => {
       const { rows } = await db.query(queryString);
 
       return rows[0];
-    } catch (err) {
-      return { error };
+    } catch (e) {
+      throw e;
     }
   };
 
@@ -22,8 +22,8 @@ const queryGenerator = (db) => {
       const { rows } = await db.query(queryString, values);
 
       return rows[0];
-    } catch (error) {
-      return { error };
+    } catch (e) {
+      throw e;
     }
   };
   return { getInfo, postInfo };

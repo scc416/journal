@@ -7,39 +7,38 @@ const queryGenerator = require("../db/helpers/users");
 module.exports = (db) => {
   const { getUserByValue, createNewUser } = queryGenerator(db);
 
-  router.post("/", async (req, res) => {
+  router.post("/", async (req, res, next) => {
     const { username, password } = req.body;
 
     try {
       const user = await getUserByValue("username", username);
-      if (!user)
-        return res.json({
-          error: "Username doesn't exists. Please create a new account.",
-        });
-      const correctPassword = await bcrypt.compare(password, user.password);
-      if (!correctPassword) {
-        return res.json({ error: "Incorrect credentials." });
+      if (!user) {
+        throw new Error(
+          "Username doesn't exists. Please create a new account."
+        );
       }
+
+      const correctPassword = await bcrypt.compare(password, user.password);
+      if (!correctPassword) throw new Error("Incorrect credentials.");
+
       req.session.user_id = user.id;
       res.json(user.username);
-    } catch (err) {
-      res.json({ error });
+    } catch (error) {
+      next(error);
     }
   });
 
-  router.post("/register", async (req, res) => {
+  router.post("/register", async (req, res, next) => {
     const { username, password, confirmPassword } = req.body;
 
     try {
       const passwordIsSame = confirmPassword === password;
-      if (!passwordIsSame) {
-        return res.json({ error: "Passwords do not match." });
-      }
+      if (!passwordIsSame) throw new Error("Passwords do not match.");
 
       const userWithSameUsername = await getUser(username);
 
       if (userWithSameUsername) {
-        return res.json({ error: "This username is already taken." });
+        throw new Error("This username is already taken.");
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
@@ -47,8 +46,8 @@ module.exports = (db) => {
       const newUser = await createNewUser(userInfo);
       req.session.user_id = newUser.id;
       res.json(username);
-    } catch (err) {
-      res.json({ error });
+    } catch (error) {
+      next(error);
     }
   });
 
@@ -57,14 +56,14 @@ module.exports = (db) => {
     res.json(null);
   });
 
-  router.get("/", async (req, res) => {
+  router.get("/", async (req, res, next) => {
     const { user_id } = req.session;
     if (!user_id) return res.json(null);
     try {
       const user = await getUserByValue("id", user_id);
       res.json(user.username);
     } catch (error) {
-      res.json({ error });
+      next(error);
     }
   });
 

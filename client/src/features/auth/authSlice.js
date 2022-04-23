@@ -4,13 +4,16 @@ import { displayError } from "features/error/errorSlice";
 const RECEIVE_USER = "user/RECEIVE_USER";
 const initState = {};
 
-export const getCurrentUsers = () => {
+export const getCurrentUser = () => {
   return async (dispatch) => {
     try {
-      const { data: username } = await axios.get("/api/users");
+      const result = await axios.get("/api/users");
+      const { data: username } = result;
+      console.log(username, "LINE 12");
       dispatch({ type: RECEIVE_USER, payload: { username } });
-    } catch (err) {
-      dispatch(displayError(err));
+    } catch (e) {
+      dispatch(displayError(e.response.data));
+      dispatch({ type: RECEIVE_USER, payload: { username: null } });
     }
   };
 };

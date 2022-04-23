@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "common/helpers";
-import { getCurrentUsers } from "features/auth/authSlice";
+import { getCurrentUser } from "features/auth/authSlice";
 
 const useCheckedAuth = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const useCheckedAuth = () => {
       if (!id) navigate("/login");
     }
     if (!hasCheckedAuth) {
-      dispatch(getCurrentUsers());
+      dispatch(getCurrentUser());
     }
     // eslint-disable-next-line
   }, [hasCheckedAuth]);

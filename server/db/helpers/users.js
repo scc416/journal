@@ -8,8 +8,8 @@ const queryGenerator = (db) => {
     try {
       const { row } = await db.query(queryString, values);
       return row.length && row[0];
-    } catch (error) {
-      return { error };
+    } catch (e) {
+      throw e;
     }
   };
 
@@ -24,8 +24,8 @@ const queryGenerator = (db) => {
       const { rows } = await db.query(queryString, values);
 
       return rows[0];
-    } catch (error) {
-      return { error };
+    } catch (e) {
+      throw e;
     }
   };
   return { getUserByValue, createNewUser };
