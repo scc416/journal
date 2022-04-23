@@ -20,6 +20,7 @@ const Register = () => {
 
   useEffect(() => {
     if (username) navigate(`/${getTodayDate()}`);
+    // eslint-disable-next-line
   }, [username]);
   const dispatch = useDispatch();
 

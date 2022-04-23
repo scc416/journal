@@ -5,7 +5,6 @@ import useShowPassword from "common/hooks/useShowPassword";
 import LockButton from "./LockButton";
 import { useRef, useEffect } from "react";
 import { logIn } from "./authSlice";
-import { displayError } from "../error/errorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodayDate } from "common/helpers";
 
@@ -22,6 +21,7 @@ const LogIn = () => {
 
   useEffect(() => {
     if (username) navigate(`/${getTodayDate()}`);
+    // eslint-disable-next-line
   }, [username]);
 
   const submitHandler = (e) => {
