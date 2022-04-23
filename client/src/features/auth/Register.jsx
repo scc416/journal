@@ -1,23 +1,37 @@
 import "./Auth.css";
 import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useShowPassword from "common/hooks/useShowPassword";
 import LockButton from "./LockButton";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { register } from "./authSlice";
+import { getTodayDate } from "common/helpers";
+import { useDispatch, useSelector } from "react-redux";
 
-const LogIn = () => {
+const Register = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
 
+  const username = useSelector(({ auth }) => auth.username);
   const usernameRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (username) navigate(`/${getTodayDate()}`);
+  }, [username]);
+  const dispatch = useDispatch();
 
   const submitHandler = (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
-    console.log(username, password, confirmPassword);
+
+    dispatch(register(username, password, confirmPassword));
+    passwordRef.current.value = "";
+    confirmPasswordRef.current.value = "";
   };
   return (
     <>
@@ -59,4 +73,4 @@ const LogIn = () => {
   );
 };
 
-export default LogIn;
+export default Register;

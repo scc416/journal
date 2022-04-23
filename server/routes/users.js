@@ -44,17 +44,19 @@ module.exports = (db) => {
       const passwordIsSame = confirmPassword === password;
       if (!passwordIsSame) throw new Error(ERROR_PASSWORDS_NOT_MATCH);
 
-      const userWithSameUsername = await getUser(username);
+      const userWithSameUsername = await getUserByValue("username", username);
 
+      console.log(userWithSameUsername)
       if (userWithSameUsername) {
         throw new Error(ERROR_USERNAME_ALREADY_TAKEN);
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
       const userInfo = { username, password: hashedPassword };
-      const newUser = await createNewUser(userInfo);
-      req.session.user_id = newUser.id;
-      res.json(username);
+
+      const user = await createNewUser(userInfo);
+      req.session.user_id = user.id;
+      res.json(user.username);
     } catch (error) {
       next(error);
     }

@@ -21,6 +21,7 @@ const reducer = (state = initState, action) => {
         trackErrorChange: !state.trackErrorChange,
       };
     case REMOVE_ERROR:
+      console.log("REDUCER");
       return { ...state, error: null };
     default:
       return state;

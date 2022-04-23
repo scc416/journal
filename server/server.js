@@ -30,6 +30,7 @@ app.use("/api/journals", journalsRoutes(db));
 app.use("/api/mode", modeRoutes());
 
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(401).send(err.message);
   next();
 });

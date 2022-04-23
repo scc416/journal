@@ -21,7 +21,8 @@ const Error = () => {
 
     setDisplayedError((prev) => error);
     // eslint-disable-next-line
-  }, [trackErrorChange]);
+  }, [trackErrorChange, error]);
+
   return (
     displayedError && (
       <Toaster>

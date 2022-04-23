@@ -1,6 +1,5 @@
 import axios from "axios";
 import { displayError } from "features/error/errorSlice";
-import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "common/helpers";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
@@ -25,12 +24,27 @@ export const logIn = (id, password) => {
         username: id,
         password,
       });
+
       dispatch({ type: RECEIVE_USER, payload: { username } });
-      const navigate = useNavigate();
-      navigate(`/${getTodayDate()}`);
     } catch (e) {
       dispatch(displayError(e.response.data));
-      dispatch({ type: RECEIVE_USER, payload: { username: null } });
+    }
+  };
+};
+
+export const register = (id, password, confirmPassword) => {
+  return async (dispatch) => {
+    try {
+      const result = await axios.post("/api/users/register", {
+        username: id,
+        password,
+        confirmPassword,
+      });
+      console.log(result);
+      const { data: username } = result;
+      dispatch({ type: RECEIVE_USER, payload: { username } });
+    } catch (e) {
+      dispatch(displayError(e.response.data));
     }
   };
 };
