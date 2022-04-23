@@ -7,14 +7,14 @@ import useJournal from "common/hooks/useJournal";
 
 const Journal = () => {
   const { date } = useParams();
-  const { validDate, disabledDays, minDate, defaultValue } = useJournal(date);
+  const { validDate, disabledDays, minDate, value } = useJournal(date);
 
   return (
     <>
       <LogoutButton />
       {validDate && (
         <div className="Journal">
-          <Calendar {...{ disabledDays, minDate, defaultValue }} />
+          <Calendar {...{ disabledDays, minDate, value }} />
           <Editor date={date} />
         </div>
       )}

@@ -45,7 +45,7 @@ const useJournal = (date) => {
     // eslint-disable-next-line
   }, [validDate]);
 
-  return { validDate, disabledDays, minDate, defaultValue: toDate(date), date };
+  return { validDate, disabledDays, minDate, value: toDate(date), date };
 };
 
 export default useJournal;
