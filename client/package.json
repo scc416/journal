@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@blueprintjs/core": "^4.2.1",
+    "@blueprintjs/datetime": "^4.1.4",
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
