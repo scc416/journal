@@ -1,6 +1,5 @@
 import axios from "axios";
 import { displayError } from "features/error/errorSlice";
-import { getTodayDate } from "common/helpers";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
 const initState = {};

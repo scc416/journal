@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getTodayDate } from "common/helpers";
 import Loading from "../loading/Loading";
 
@@ -11,6 +11,7 @@ const Redirect = () => {
 
   useEffect(() => {
     navigate(url);
+    // eslint-disable-next-line
   }, []);
 
   return <Loading />;

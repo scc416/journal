@@ -1,12 +1,11 @@
 import "./Auth.css";
 import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import useShowPassword from "common/hooks/useShowPassword";
 import LockButton from "./LockButton";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { logIn } from "./authSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { getTodayDate } from "common/helpers";
+import { useDispatch } from "react-redux";
 
 const LogIn = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
