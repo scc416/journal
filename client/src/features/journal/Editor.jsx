@@ -1,33 +1,27 @@
 import { useState, useEffect, useRef } from "react";
-import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
+import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
-import axios from "axios";
 import moment from "moment";
-import { saveJournal } from "./journalSlice";
+import { saveJournal, getJournals } from "./journalSlice";
+import { useDispatch } from "react-redux";
+import { convertFromRaw } from "draft-js";
 
 const JournalEditor = ({ date }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
+  const dispatch = useDispatch();
+  // setEditorState(EditorState.createWithContent(state));
+
+  useEffect(() => {
+    dispatch(getJournals());
+
+  }, []);
 
   const editor = useRef(null);
   function focusEditor() {
     editor.current.focus();
   }
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.get("/api/journals");
-        console.log(data);
-        // const parse = JSON.parse(info);
-        // const state = convertFromRaw(parse);
-        // setEditorState(EditorState.createWithContent(state));
-      } catch (e) {
-        console.log(e);
-      }
-    })();
-  }, []);
 
   const onChange = (state) => {
     setEditorState(state);
