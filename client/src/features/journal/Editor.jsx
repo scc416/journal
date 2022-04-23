@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import axios from "axios";
+import moment from "moment";
 
-const Editor = () => {
+const JournalEditor = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
@@ -15,19 +16,30 @@ const Editor = () => {
 
   useEffect(() => {
     (async () => {
-      const {
-        data: { info },
-      } = await axios.get("/api/users");
-      const parse = JSON.parse(info);
-      const state = convertFromRaw(parse);
-      setEditorState(EditorState.createWithContent(state));
+      try {
+        const {
+          data: { info },
+        } = await axios.get("/api/journals");
+        console.log(info);
+        // const parse = JSON.parse(info);
+        // const state = convertFromRaw(parse);
+        // setEditorState(EditorState.createWithContent(state));
+      } catch (e) {
+        console.log(e);
+      }
     })();
   }, []);
 
   const onChange = (state) => {
     setEditorState(state);
     const content = convertToRaw(state.getCurrentContent());
-    (async () => await axios.post("/api/users/", { state: content }))();
+    (async () => {
+      try {
+        await axios.post("/api/journals", { state: content, date: moment() });
+      } catch (e) {
+        console.log(e);
+      }
+    })();
   };
 
   return (
@@ -45,4 +57,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default JournalEditor;
