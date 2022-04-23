@@ -3,20 +3,16 @@ import { Editor, EditorState } from "draft-js";
 import "draft-js/dist/Draft.css";
 import moment from "moment";
 import { saveJournal, getJournals } from "./journalSlice";
-import { useDispatch } from "react-redux";
+
 import { convertFromRaw } from "draft-js";
 
 const JournalEditor = ({ date }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
-  const dispatch = useDispatch();
+  
   // setEditorState(EditorState.createWithContent(state));
 
-  useEffect(() => {
-    dispatch(getJournals());
-
-  }, []);
 
   const editor = useRef(null);
   function focusEditor() {
