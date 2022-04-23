@@ -1,5 +1,7 @@
 import axios from "axios";
 import { displayError } from "features/error/errorSlice";
+import { useNavigate } from "react-router-dom";
+import { getTodayDate } from "common/helpers";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
 const initState = {};
@@ -24,6 +26,8 @@ export const logIn = (id, password) => {
         password,
       });
       dispatch({ type: RECEIVE_USER, payload: { username } });
+      const navigate = useNavigate();
+      navigate(`/${getTodayDate()}`);
     } catch (e) {
       dispatch(displayError(e.response.data));
       dispatch({ type: RECEIVE_USER, payload: { username: null } });
