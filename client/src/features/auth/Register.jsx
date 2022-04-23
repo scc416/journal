@@ -11,17 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 const Register = () => {
   const { showPassword, toggleShowPassword } = useShowPassword();
 
-  const username = useSelector(({ auth }) => auth.username);
   const usernameRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (username) navigate(`/${getTodayDate()}`);
-    // eslint-disable-next-line
-  }, [username]);
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {

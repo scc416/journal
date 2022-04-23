@@ -1,5 +1,6 @@
 import axios from "axios";
 import { displayError } from "features/error/errorSlice";
+import { getTodayDate } from "common/helpers";
 
 const RECEIVE_USER = "user/RECEIVE_USER";
 const initState = {};
@@ -23,9 +24,10 @@ export const logIn = (id, password) => {
         username: id,
         password,
       });
-
+      console.log(username);
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (e) {
+      console.log(e);
       dispatch(displayError(e.response.data));
     }
   };

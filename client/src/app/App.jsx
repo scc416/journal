@@ -29,7 +29,6 @@ const App = () => {
           <Routes>
             <Route path="/login" element={<LogIn />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/journal/:noAuth" element={<Redirect />} />
             <Route path="*" element={<Redirect />} />
           </Routes>
         )

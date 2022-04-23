@@ -16,14 +16,6 @@ const LogIn = () => {
 
   const dispatch = useDispatch();
 
-  const username = useSelector(({ auth }) => auth.username);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (username) navigate(`/${getTodayDate()}`);
-    // eslint-disable-next-line
-  }, [username]);
-
   const submitHandler = (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
