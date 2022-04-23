@@ -7,9 +7,7 @@ const initState = {};
 export const getCurrentUser = () => {
   return async (dispatch) => {
     try {
-      const result = await axios.get("/api/users");
-      const { data: username } = result;
-      console.log(username, "LINE 12");
+      const { data: username } = await axios.get("/api/users");
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (e) {
       dispatch(displayError(e.response.data));
