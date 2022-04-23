@@ -1,5 +1,12 @@
+import LogoutButton from "features/auth/LogoutButton";
+
 const Journal = () => {
-  return <div>Journal</div>;
+  return (
+    <>
+      <LogoutButton />
+      Journal
+    </>
+  );
 };
 
 export default Journal;

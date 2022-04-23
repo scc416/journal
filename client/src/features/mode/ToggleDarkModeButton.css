@@ -4,7 +4,8 @@
   left: 1em;
 }
 
-.DarkModeButton svg {
+.DarkModeButton span[icon="moon"] svg {
   position: relative;
-  top: 0.1em;
+  bottom: 0.03em;
+  left: 0.08em;
 }

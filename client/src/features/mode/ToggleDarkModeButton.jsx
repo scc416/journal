@@ -5,13 +5,11 @@ import { mdiBrightness7 } from "@mdi/js";
 import { Button } from "@blueprintjs/core";
 
 const ToggleDarkModeButton = ({ darkMode, toggleDarkMode }) => {
-  const path = darkMode ? mdiBrightness7 : mdiBrightness3;
+  const icon = darkMode ? "moon" : "flash";
   return (
     <>
       <div className="DarkModeButton">
-        <Button type="submit" onClick={toggleDarkMode}>
-          <Icon path={path} size={1} />
-        </Button>
+        <Button onClick={toggleDarkMode} icon={icon} />
       </div>
     </>
   );
