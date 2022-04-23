@@ -3,6 +3,15 @@ import { Classes } from "@blueprintjs/core";
 import { useNavigate } from "react-router-dom";
 import { formatDate, today } from "common/helpers";
 
+const settings = () => {
+  return {
+    className: Classes.ELEVATION_1,
+    highlightCurrentDay: true,
+    showActionsBar: true,
+    maxDate: today(),
+  };
+};
+
 const Calendar = ({ value, disabledDays, minDate }) => {
   const navigate = useNavigate();
   const changeHandler = (date) => {
@@ -11,15 +20,12 @@ const Calendar = ({ value, disabledDays, minDate }) => {
 
   return (
     <DatePicker
+      {...settings}
       {...{
         minDate,
         value,
         dayPickerProps: { disabledDays },
-        className: Classes.ELEVATION_1,
-        highlightCurrentDay: true,
-        showActionsBar: true,
         onChange: changeHandler,
-        maxDate: today(),
       }}
     />
   );
