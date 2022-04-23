@@ -23,7 +23,6 @@ export const logIn = (id, password) => {
         username: id,
         password,
       });
-      console.log(username);
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (e) {
       dispatch(displayError(e.response.data));
@@ -50,7 +49,6 @@ export const register = (id, password, confirmPassword) => {
         password,
         confirmPassword,
       });
-      console.log(result);
       const { data: username } = result;
       dispatch({ type: RECEIVE_USER, payload: { username } });
     } catch (e) {

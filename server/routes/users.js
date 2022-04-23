@@ -46,7 +46,6 @@ module.exports = (db) => {
 
       const userWithSameUsername = await getUserByValue("username", username);
 
-      console.log(userWithSameUsername)
       if (userWithSameUsername) {
         throw new Error(ERROR_USERNAME_ALREADY_TAKEN);
       }
