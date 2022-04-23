@@ -7,7 +7,7 @@ const Journal = () => {
   return (
     <>
       <LogoutButton />
-      <div>
+      <div className="Journal">
         <Calendar />
         <Editor />
       </div>

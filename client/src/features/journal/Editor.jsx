@@ -3,6 +3,7 @@ import { Editor, EditorState, convertToRaw, convertFromRaw } from "draft-js";
 import "draft-js/dist/Draft.css";
 import axios from "axios";
 import moment from "moment";
+import { saveJournal } from "./journalSlice";
 
 const JournalEditor = () => {
   const [editorState, setEditorState] = useState(() =>
@@ -30,14 +31,7 @@ const JournalEditor = () => {
 
   const onChange = (state) => {
     setEditorState(state);
-    const content = convertToRaw(state.getCurrentContent());
-    (async () => {
-      try {
-        await axios.post("/api/journals", { state: content, date: moment() });
-      } catch (e) {
-        console.log(e);
-      }
-    })();
+    saveJournal(state, moment());
   };
 
   return (
