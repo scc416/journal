@@ -16,6 +16,21 @@ export const getCurrentUser = () => {
   };
 };
 
+export const logIn = (id, password) => {
+  return async (dispatch) => {
+    try {
+      const { data: username } = await axios.post("/api/users", {
+        username: id,
+        password,
+      });
+      dispatch({ type: RECEIVE_USER, payload: { username } });
+    } catch (e) {
+      dispatch(displayError(e.response.data));
+      dispatch({ type: RECEIVE_USER, payload: { username: null } });
+    }
+  };
+};
+
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
