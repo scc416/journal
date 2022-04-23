@@ -5,7 +5,7 @@ import axios from "axios";
 import moment from "moment";
 import { saveJournal } from "./journalSlice";
 
-const JournalEditor = () => {
+const JournalEditor = ({ date }) => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
