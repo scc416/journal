@@ -42,7 +42,7 @@ export const logout = () => {
   };
 };
 
-export const register = (id, password, confirmPassword) => {
+export const register = (id, password, confirmPassword, fn) => {
   return async (dispatch) => {
     try {
       const result = await axios.post("/api/users/register", {
@@ -55,6 +55,7 @@ export const register = (id, password, confirmPassword) => {
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
+    fn();
   };
 };
 

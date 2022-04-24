@@ -16,15 +16,18 @@ const Register = () => {
 
   const dispatch = useDispatch();
 
+  const clearPasswords = () => {
+    passwordRef.current.value = "";
+    confirmPasswordRef.current.value = "";
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
 
-    dispatch(register(username, password, confirmPassword));
-    passwordRef.current.value = "";
-    confirmPasswordRef.current.value = "";
+    dispatch(register(username, password, confirmPassword, clearPasswords));
   };
   return (
     <>
