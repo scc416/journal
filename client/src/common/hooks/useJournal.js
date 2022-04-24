@@ -14,7 +14,11 @@ import { useDispatch } from "react-redux";
 const useJournal = (date) => {
   const formattedDate = getFormattedDate(date);
   const navigate = useNavigate();
-  const journals = useSelector(({ journals }) => journals);
+  const { journals, gotData } = useSelector(
+    ({ journals: { data, gotData } }) => {
+      return { journals: data, gotData };
+    }
+  );
   const dates = Object.keys(journals);
   const minDate = (dates.length && toDate(dates[0])) || today();
   const dispatch = useDispatch();
@@ -37,15 +41,24 @@ const useJournal = (date) => {
   }, []);
 
   useEffect(() => {
-    if (!formattedDate || !dateIsAvailable) {
-      navigate(`/journal/${getTodayDate()}`);
-    } else if (!correctDateFormat) {
-      navigate(`/journal/${formattedDate}`);
+    if (gotData) {
+      if (!formattedDate || !dateIsAvailable) {
+        navigate(`/journal/${getTodayDate()}`);
+      } else if (!correctDateFormat) {
+        navigate(`/journal/${formattedDate}`);
+      }
     }
     // eslint-disable-next-line
-  }, [validDate]);
+  }, [gotData]);
 
-  return { validDate, disabledDays, minDate, value: toDate(date), date };
+  return {
+    gotData,
+    validDate,
+    disabledDays,
+    minDate,
+    value: toDate(date),
+    date,
+  };
 };
 
 export default useJournal;

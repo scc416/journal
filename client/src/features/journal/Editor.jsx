@@ -1,8 +1,8 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Editor, EditorState } from "draft-js";
 import { saveJournal } from "./journalSlice";
-import { useDispatch } from "react-redux";
-// import { convertFromRaw } from "draft-js";
+import { useDispatch, useSelector } from "react-redux";
+import { convertFromRaw } from "draft-js";
 import { convertToRaw } from "draft-js";
 
 const JournalEditor = ({ date }) => {
@@ -10,7 +10,14 @@ const JournalEditor = ({ date }) => {
     EditorState.createEmpty()
   );
 
-  // setEditorState(EditorState.createWithContent(state));
+  const data = useSelector(({ journals: { data } }) => data);
+  useEffect(() => {
+    console.log("HELLO");
+    if (date in data) {
+      const content = convertFromRaw(data[date]);
+      setEditorState(EditorState.createWithContent(content));
+    }
+  }, [date]);
 
   const editor = useRef(null);
   function focusEditor() {

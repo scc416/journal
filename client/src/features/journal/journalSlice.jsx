@@ -3,7 +3,7 @@ import axios from "axios";
 import { displayError } from "../error/errorSlice";
 import { formatJournals } from "common/helpers";
 
-const initState = {};
+const initState = { data: {}, gotData: false };
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
 
@@ -35,14 +35,16 @@ const reducer = (state = initState, action) => {
       const {
         payload: { date, content },
       } = action;
-      return { ...state, [date]: content };
+      const { data: prevData } = state;
+      const newData = { ...prevData, [date]: content };
+      return { ...state, data: newData };
     case GET_JOURNALS:
       const {
         payload: { data },
       } = action;
       const formattedData = formatJournals(data);
       console.log(formattedData);
-      return { ...state, ...formattedData };
+      return { ...state, data: formattedData, gotData: true };
     default:
       return state;
   }

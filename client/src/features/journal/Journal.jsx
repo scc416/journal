@@ -6,16 +6,17 @@ import { useParams } from "react-router-dom";
 import useJournal from "common/hooks/useJournal";
 import { InputGroup, FormGroup } from "@blueprintjs/core";
 import { useRef } from "react";
+import Loading from "features/loading/Loading";
 
 const Journal = () => {
   const { date } = useParams();
-  const { validDate, disabledDays, minDate, value } = useJournal(date);
+  const { validDate, disabledDays, minDate, value, gotData } = useJournal(date);
   const search = useRef();
 
   return (
     <>
       <LogoutButton />
-      {validDate && (
+      {gotData && validDate ? (
         <div className="Journal">
           <div className="calendar-container">
             <FormGroup>
@@ -31,6 +32,8 @@ const Journal = () => {
             <Editor date={date} />
           </div>
         </div>
+      ) : (
+        <Loading />
       )}
     </>
   );
