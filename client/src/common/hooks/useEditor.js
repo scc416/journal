@@ -5,6 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 import { getTodayDate } from "common/helpers";
 
+const styles = ["BOLD", "ITALIC", "UNDERLINE"];
+const lists = [
+  { style: "ordered-list-item", icon: "numbered-list" },
+  { style: "unordered-list-item", icon: "properties" },
+];
+
 const useEditor = (date) => {
   const data = useSelector(({ journals: { data } }) => data);
 
@@ -43,10 +49,14 @@ const useEditor = (date) => {
     }
   };
 
-  const styles = ["BOLD", "ITALIC", "UNDERLINE"];
-  const mouseDownHandler = (style) => {
+  const mouseDownHandler = (style, list) => {
+    if (!list)
+      return () => {
+        setEditorState((prev) => RichUtils.toggleInlineStyle(prev, style));
+      };
+
     return () => {
-      setEditorState((prev) => RichUtils.toggleInlineStyle(prev, style));
+      setEditorState((prev) => RichUtils.toggleBlockType(prev, style));
     };
   };
 
@@ -58,6 +68,7 @@ const useEditor = (date) => {
     readOnly,
     mouseDownHandler,
     styles,
+    lists,
   };
 };
 

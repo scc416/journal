@@ -12,6 +12,7 @@ const JournalEditor = ({ date }) => {
     readOnly,
     mouseDownHandler,
     styles,
+    lists,
   } = useEditor(date);
 
   return (
@@ -25,7 +26,7 @@ const JournalEditor = ({ date }) => {
           placeholder: "How was your day?",
         }}
       />
-      <EditorButtons {...{ mouseDownHandler, styles }} />
+      <EditorButtons {...{ mouseDownHandler, styles, lists }} />
     </div>
   );
 };
