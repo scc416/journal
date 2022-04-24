@@ -16,7 +16,7 @@ export const getCurrentUser = () => {
   };
 };
 
-export const logIn = (id, password) => {
+export const logIn = (id, password, fn) => {
   return async (dispatch) => {
     try {
       const { data: username } = await axios.post("/api/users", {
@@ -27,6 +27,7 @@ export const logIn = (id, password) => {
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
+    fn();
   };
 };
 

@@ -15,12 +15,13 @@ const LogIn = () => {
 
   const dispatch = useDispatch();
 
+  const clearPassword = () => (passwordRef.current.value = "");
+
   const submitHandler = (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-    dispatch(logIn(username, password));
-    passwordRef.current.value = "";
+    dispatch(logIn(username, password, clearPassword));
   };
 
   return (
