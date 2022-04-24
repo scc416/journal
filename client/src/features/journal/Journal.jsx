@@ -11,13 +11,13 @@ const Journal = () => {
   const { date } = useParams();
   const { validDate, disabledDays, minDate, value } = useJournal(date);
   const search = useRef();
-  
+
   return (
     <>
       <LogoutButton />
       {validDate && (
         <div className="Journal">
-          <div>
+          <div className="calendar-container">
             <FormGroup>
               <InputGroup
                 large={true}
