@@ -3,6 +3,7 @@ import { Editor } from "draft-js";
 import { TextArea } from "@blueprintjs/core";
 import useEditor from "common/hooks/useEditor";
 import EditorButtons from "./EditorButtons";
+import { getLongDate } from "common/helpers";
 
 const JournalEditor = ({ date }) => {
   const {
@@ -18,7 +19,7 @@ const JournalEditor = ({ date }) => {
   return (
     <div className="Editor">
       <div>
-        <div>{date}</div>
+        <div>{getLongDate(date)}</div>
         <TextArea
           large={true}
           placeholder="Title"
