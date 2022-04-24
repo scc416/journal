@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { EditorState } from "draft-js";
-import { saveJournal } from "features/journal/journalSlice";
+import { saveJournal, deleteJournal } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 import { getTodayDate } from "common/helpers";
@@ -27,13 +27,14 @@ const useEditor = (date) => {
   const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
+  const readOnly = date !== getTodayDate();
+
   const onChange = (state) => {
     if (!readOnly) {
       const content = state.getCurrentContent();
       const isEmpty = !content.hasText();
-
       if (isEmpty) {
-        
+        dispatch(deleteJournal(date));
       } else {
         const rawContent = convertToRaw(content);
         dispatch(saveJournal(rawContent, date));
@@ -41,8 +42,6 @@ const useEditor = (date) => {
       setEditorState(state);
     }
   };
-
-  const readOnly = date !== getTodayDate();
 
   return { focusEditor, editor, editorState, onChange, readOnly };
 };

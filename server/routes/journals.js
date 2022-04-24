@@ -30,6 +30,7 @@ module.exports = (db) => {
   router.delete("/", async (req, res, next) => {
     const { user_id } = req.session;
     const { date } = req.body;
+
     try {
       await deleteJournal(user_id, date);
       res.json();

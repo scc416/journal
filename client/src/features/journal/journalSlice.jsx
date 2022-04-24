@@ -32,8 +32,9 @@ export const getJournals = () => {
 export const deleteJournal = (date) => {
   return async (dispatch) => {
     try {
-      await axios.delete("/api/journals", { date });
-      dispatch({ type: DELETE_JOURNAL, payload: { date } });
+      console.log(date);
+      await axios.delete("/api/journals", { data: { date } });
+      // dispatch({ type: DELETE_JOURNAL, payload: { date } });
     } catch (e) {
       dispatch(displayError(e.response.data));
     }

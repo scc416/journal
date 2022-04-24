@@ -37,11 +37,21 @@ const queryGenerator = (db) => {
       VALUES ($1, $2, $3)
       RETURNING *;`;
 
+    const queryDeleteString = `
+      DELETE FROM journals
+      WHERE user_id = $1 AND date = $2 AND NOT id = $3
+      RETURNING *;`;
+
     try {
       const { rows } = await db.query(querySelectString, values1);
       const result = rows.length
         ? await db.query(queryUpdateString, values2)
         : await db.query(queryInsertString, values2);
+
+      if (rows.length > 1) {
+        const values3 = [id, date, rows[0].id];
+        await db.query(queryDeleteString, values3);
+      }
 
       return result.rows[0];
     } catch (e) {
@@ -51,18 +61,15 @@ const queryGenerator = (db) => {
 
   const deleteJournal = async (id, date) => {
     const values = [id, date];
-    const querySelectString = `
-      SELECT * FROM journals
-      WHERE user_id = $1 AND date = $2;`;
 
     const queryDeleteString = `
       DELETE FROM journals
-      WHERE user_id = $1 AND date = $2;
+      WHERE user_id = $1 AND date = $2
       RETURNING *;`;
 
     try {
-      const { rows } = await db.query(querySelectString, values);
-      if (rows.length) await db.query(queryDeleteString, values);
+      console.log(id, date)
+      await db.query(queryDeleteString, values);
     } catch (e) {
       throw e;
     }
