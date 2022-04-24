@@ -8,7 +8,8 @@
 }
 
 .bright .Editor,
-.bright .Journal input.bp4-input {
+.bright .Journal input.bp4-input,
+.bright .Editor textarea.bp4-input.bp4-large {
   background: #f9f9f9;
 }
 
@@ -17,30 +18,7 @@
 }
 
 .dark .Editor,
-.dark .Journal input.bp4-input {
+.dark .Journal input.bp4-input,
+.dark .Editor textarea.bp4-input.bp4-large {
   background: #353538;
-}
-
-.Editor {
-  flex: 1;
-  border-radius: 0.3em;
-  min-height: 100%;
-  cursor: text;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-left: 5em;
-}
-
-.Editor > *:first-child {
-  padding: 3em;
-}
-
-.calendar-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.calendar-container > *:first-child {
-  margin-bottom: 3em;
 }

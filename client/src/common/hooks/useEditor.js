@@ -33,20 +33,16 @@ const useEditor = (date) => {
   const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
-  const readOnly = date !== getTodayDate();
-
   const onChange = (state) => {
-    if (!readOnly) {
-      const content = state.getCurrentContent();
-      const isEmpty = !content.hasText();
-      if (isEmpty) {
-        dispatch(deleteJournal(date));
-      } else {
-        const rawContent = convertToRaw(content);
-        dispatch(saveJournal(rawContent, date));
-      }
-      setEditorState(state);
+    const content = state.getCurrentContent();
+    const isEmpty = !content.hasText();
+    if (isEmpty) {
+      dispatch(deleteJournal(date));
+    } else {
+      const rawContent = convertToRaw(content);
+      dispatch(saveJournal(rawContent, date));
     }
+    setEditorState(state);
   };
 
   const mouseDownHandler = (style, list) => {
@@ -65,7 +61,6 @@ const useEditor = (date) => {
     editor,
     editorState,
     onChange,
-    readOnly,
     mouseDownHandler,
     styles,
     lists,

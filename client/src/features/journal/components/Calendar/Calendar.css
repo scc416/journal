@@ -21,3 +21,12 @@
 .Journal .bp4-divider {
   border: none;
 }
+
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-container > *:first-child {
+  margin-bottom: 3em;
+}

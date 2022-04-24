@@ -21,3 +21,32 @@
 .bright .Editor-Buttons {
   background: #c5c5c5;
 }
+
+.Editor {
+  flex: 1;
+  border-radius: 0.3em;
+  min-height: 100%;
+  cursor: text;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 5em;
+}
+
+.Editor > *:first-child {
+  padding: 3em;
+}
+
+textarea {
+  resize: none;
+}
+
+.Editor textarea.bp4-input.bp4-large {
+  box-shadow: none;
+}
+
+
+.dark .Editor .bp4-dark textarea.bp4-input.bp4-large {
+  background: #353538;
+  box-shadow: none;
+}
