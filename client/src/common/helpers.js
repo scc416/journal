@@ -16,3 +16,9 @@ export const formatJournals = (data) => {
   }
   return result;
 };
+
+export const removeKey = (journals, date) => {
+  const result = { ...journals };
+  delete result[date];
+  return result;
+};

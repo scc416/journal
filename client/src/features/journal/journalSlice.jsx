@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Editor, EditorState } from "draft-js";
 import { displayError } from "../error/errorSlice";
-import { formatJournals } from "common/helpers";
+import { formatJournals, removeKey } from "common/helpers";
 
 const initState = { data: {}, gotData: false };
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
+const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
 
 export const saveJournal = (content, date) => {
   return async (dispatch) => {
@@ -29,22 +29,38 @@ export const getJournals = () => {
   };
 };
 
+export const deleteJournal = (date) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete("/api/journals", { date });
+      dispatch({ type: DELETE_JOURNAL, payload: { date } });
+    } catch (e) {
+      dispatch(displayError(e.response.data));
+    }
+  };
+};
+
 const reducer = (state = initState, action) => {
+  const { data: prevData } = state;
   switch (action.type) {
     case SAVE_JOURNAL:
       const {
         payload: { date, content },
       } = action;
-      const { data: prevData } = state;
       const newData = { ...prevData, [date]: content };
       return { ...state, data: newData };
     case GET_JOURNALS:
       const {
-        payload: { data },
+        payload: { data: receivedData },
       } = action;
-      const formattedData = formatJournals(data);
-      console.log(formattedData);
+      const formattedData = formatJournals(receivedData);
       return { ...state, data: formattedData, gotData: true };
+    case DELETE_JOURNAL:
+      const {
+        payload: { date: dateToBeDelete },
+      } = action;
+      const data = removeKey(prevData, dateToBeDelete);
+      return { ...state, data };
     default:
       return state;
   }

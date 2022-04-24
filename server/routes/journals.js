@@ -4,14 +4,14 @@ const router = express.Router();
 const queryGenerator = require("../database/helpers/journals");
 
 module.exports = (db) => {
-  const { postJournal, getJournals } = queryGenerator(db);
+  const { postJournal, getJournals, deleteJournal } = queryGenerator(db);
 
   router.post("/", async (req, res, next) => {
     const { content, date } = req.body;
     const { user_id } = req.session;
     try {
-      const info = await postJournal(content, user_id, date);
-      res.json(info);
+      await postJournal(content, user_id, date);
+      res.json();
     } catch (error) {
       next(error);
     }
@@ -22,6 +22,17 @@ module.exports = (db) => {
     try {
       const info = await getJournals(user_id);
       res.json(info);
+    } catch (err) {
+      next(error);
+    }
+  });
+
+  router.delete("/", async (req, res, next) => {
+    const { user_id } = req.session;
+    const { date } = req.body;
+    try {
+      await deleteJournal(user_id, date);
+      res.json();
     } catch (err) {
       next(error);
     }

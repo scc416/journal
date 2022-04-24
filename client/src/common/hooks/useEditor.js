@@ -6,11 +6,14 @@ import { convertFromRaw, convertToRaw } from "draft-js";
 import { getTodayDate } from "common/helpers";
 
 const useEditor = (date) => {
+  const data = useSelector(({ journals: { data } }) => data);
+
   const [editorState, setEditorState] = useState(() =>
-    EditorState.createEmpty()
+    date in data
+      ? EditorState.createWithContent(convertFromRaw(data[date]))
+      : EditorState.createEmpty()
   );
 
-  const data = useSelector(({ journals: { data } }) => data);
   useEffect(() => {
     if (date in data) {
       const content = convertFromRaw(data[date]);
@@ -21,13 +24,22 @@ const useEditor = (date) => {
   }, [date]);
 
   const editor = useRef(null);
-  const focusEditor = () => editor.current.focus()
+  const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
   const onChange = (state) => {
-    const content = convertToRaw(state.getCurrentContent());
-    setEditorState(state);
-    dispatch(saveJournal(content, date));
+    if (!readOnly) {
+      const content = state.getCurrentContent();
+      const isEmpty = !content.hasText();
+
+      if (isEmpty) {
+        
+      } else {
+        const rawContent = convertToRaw(content);
+        dispatch(saveJournal(rawContent, date));
+      }
+      setEditorState(state);
+    }
   };
 
   const readOnly = date !== getTodayDate();

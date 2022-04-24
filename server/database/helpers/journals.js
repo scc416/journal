@@ -48,7 +48,26 @@ const queryGenerator = (db) => {
       throw e;
     }
   };
-  return { postJournal, getJournals };
+
+  const deleteJournal = async (id, date) => {
+    const values = [id, date];
+    const querySelectString = `
+      SELECT * FROM journals
+      WHERE user_id = $1 AND date = $2;`;
+
+    const queryDeleteString = `
+      DELETE FROM journals
+      WHERE user_id = $1 AND date = $2;
+      RETURNING *;`;
+
+    try {
+      const { rows } = await db.query(querySelectString, values);
+      if (rows.length) await db.query(queryDeleteString, values);
+    } catch (e) {
+      throw e;
+    }
+  };
+  return { postJournal, getJournals, deleteJournal };
 };
 
 module.exports = queryGenerator;
