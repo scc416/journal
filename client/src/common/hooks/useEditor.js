@@ -21,9 +21,7 @@ const useEditor = (date) => {
   }, [date]);
 
   const editor = useRef(null);
-  function focusEditor() {
-    editor.current.focus();
-  }
+  const focusEditor = () => editor.current.focus()
   const dispatch = useDispatch();
 
   const onChange = (state) => {
