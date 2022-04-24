@@ -10,7 +10,7 @@ const JournalEditor = ({ date }) => {
     editorState,
     onChange,
     readOnly,
-    boldClickHandler,
+    clickHandler,
   } = useEditor(date);
 
   return (
@@ -24,7 +24,7 @@ const JournalEditor = ({ date }) => {
           placeholder: "How was your day?",
         }}
       />
-      <EditorButtons boldClickHandler={boldClickHandler} />
+      <EditorButtons clickHandler={clickHandler} />
     </div>
   );
 };

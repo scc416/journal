@@ -1,9 +1,9 @@
 import { Button } from "@blueprintjs/core";
 
-const EditorButtons = ({ boldClickHandler }) => {
+const EditorButtons = ({ clickHandler }) => {
   return (
     <div>
-      <Button icon="BOLD" minimal={true} onMouseDown={boldClickHandler} />
+      <Button icon="BOLD" minimal={true} onMouseDown={clickHandler} />
     </div>
   );
 };
