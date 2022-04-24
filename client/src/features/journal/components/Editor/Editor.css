@@ -9,3 +9,15 @@
 .Journal .notranslate.public-DraftEditor-content {
   flex: 1;
 }
+
+.Editor-Buttons {
+  padding: 0.2em 1.3em;
+}
+
+.dark .Editor-Buttons {
+  background: #131313;
+}
+
+.bright .Editor-Buttons {
+  background: #c5c5c5;
+}

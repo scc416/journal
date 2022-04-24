@@ -9,7 +9,7 @@ const EditorButtons = ({ mouseDownHandler, styles }) => {
       onMouseDown={mouseDownHandler(style)}
     />
   ));
-  return <div>{Buttons}</div>;
+  return <div className="Editor-Buttons">{Buttons}</div>;
 };
 
 export default EditorButtons;
