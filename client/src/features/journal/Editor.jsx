@@ -1,6 +1,7 @@
 import { Editor } from "draft-js";
 import useEditor from "common/hooks/useEditor";
-import { Button } from "@blueprintjs/core";
+import EditorButtons from "./EditorButtons";
+
 const JournalEditor = ({ date }) => {
   const {
     focusEditor,
@@ -22,9 +23,7 @@ const JournalEditor = ({ date }) => {
           placeholder: "How was your day?",
         }}
       />
-      <div>
-        <Button icon="bold" minimal={true} onMouseDown={boldClickHandler} />
-      </div>
+      <EditorButtons boldClickHandler={boldClickHandler} />
     </div>
   );
 };

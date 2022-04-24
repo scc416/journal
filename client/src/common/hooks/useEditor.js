@@ -43,6 +43,7 @@ const useEditor = (date) => {
     }
   };
 
+  const style = ["BOLD", "ITALIC", "UNDERLINE"];
   const boldClickHandler = (e) => {
     setEditorState((prev) => RichUtils.toggleInlineStyle(prev, "BOLD"));
   };

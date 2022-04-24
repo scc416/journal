@@ -69,3 +69,13 @@
 .calendar-container > *:first-child {
   margin-bottom: 3em;
 }
+
+.Journal .DraftEditor-root,
+.Journal .DraftEditor-editorContainer {
+  flex: 1;
+  display: flex;
+}
+
+.Journal .notranslate.public-DraftEditor-content {
+  flex: 1;
+}
