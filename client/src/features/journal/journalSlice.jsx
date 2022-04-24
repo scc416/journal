@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { Editor, EditorState } from "draft-js";
 import { displayError } from "../error/errorSlice";
 import { formatJournals } from "common/helpers";
 
