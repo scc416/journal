@@ -1,9 +1,11 @@
 import { useState, useRef } from "react";
 import { Editor, EditorState } from "draft-js";
-import "draft-js/dist/Draft.css";
 import moment from "moment";
 import { saveJournal } from "./journalSlice";
+import { useDispatch } from "react-redux";
+import { getTodayDate } from "common/helpers";
 // import { convertFromRaw } from "draft-js";
+import { convertToRaw } from "draft-js";
 
 const JournalEditor = ({ date }) => {
   const [editorState, setEditorState] = useState(() =>
@@ -16,17 +18,16 @@ const JournalEditor = ({ date }) => {
   function focusEditor() {
     editor.current.focus();
   }
+  const dispatch = useDispatch();
 
   const onChange = (state) => {
+    const content = convertToRaw(state.getCurrentContent());
+    dispatch(saveJournal(content, getTodayDate()));
     setEditorState(state);
-    saveJournal(state, moment());
   };
 
   return (
-    <div
-      className="Editor"
-      onClick={focusEditor}
-    >
+    <div className="Editor" onClick={focusEditor}>
       <Editor
         ref={editor}
         editorState={editorState}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { convertToRaw } from "draft-js";
+
 import { displayError } from "../error/errorSlice";
 import { formatJournals } from "common/helpers";
 
@@ -7,9 +7,8 @@ const initState = {};
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
 
-export const saveJournal = (state, date) => {
+export const saveJournal = (content, date) => {
   return async (dispatch) => {
-    const content = convertToRaw(state.getCurrentContent());
     try {
       await axios.post("/api/journals", { content, date });
       dispatch({ type: SAVE_JOURNAL, payload: { date, content } });
@@ -38,7 +37,6 @@ const reducer = (state = initState, action) => {
     case GET_JOURNALS:
       const { data } = action.payload;
       const formattedData = formatJournals(data);
-      console.log(formattedData);
       return { ...state, ...formattedData };
     default:
       return state;

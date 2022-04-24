@@ -1,4 +1,5 @@
 @import "@blueprintjs/datetime/lib/css/blueprint-datetime.css";
+@import "draft-js/dist/Draft.css";
 
 .Journal {
   display: flex;
