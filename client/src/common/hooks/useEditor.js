@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { EditorState, RichUtils, getText } from "draft-js";
+import { EditorState, RichUtils } from "draft-js";
 import { saveJournal, deleteJournal } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
