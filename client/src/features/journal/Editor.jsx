@@ -12,7 +12,6 @@ const JournalEditor = ({ date }) => {
 
   const data = useSelector(({ journals: { data } }) => data);
   useEffect(() => {
-    console.log("HELLO");
     if (date in data) {
       const content = convertFromRaw(data[date]);
       setEditorState(EditorState.createWithContent(content));
@@ -27,9 +26,8 @@ const JournalEditor = ({ date }) => {
 
   const onChange = (state) => {
     const content = convertToRaw(state.getCurrentContent());
-    dispatch(saveJournal(content, "2022-04-06"));
-    // dispatch(saveJournal(content, date));
     setEditorState(state);
+    dispatch(saveJournal(content, date));
   };
 
   return (
