@@ -36,8 +36,10 @@ const JournalEditor = ({ date }) => {
           }}
         />
       </div>
-
-      <EditorButtons {...{ mouseDownHandler, styles, lists }} />
+      <div className="Editor-Toolbar">
+        <EditorButtons {...{ mouseDownHandler, styles, lists }} />
+        <div>103</div>
+      </div>
     </div>
   );
 };
