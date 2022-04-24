@@ -20,7 +20,7 @@ const Calendar = ({ value, disabledDays, minDate }) => {
 
   return (
     <DatePicker
-      {...settings}
+      {...settings()}
       {...{
         minDate,
         value,
