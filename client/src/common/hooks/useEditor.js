@@ -43,9 +43,11 @@ const useEditor = (date) => {
     }
   };
 
-  const style = ["BOLD", "ITALIC", "UNDERLINE"];
-  const clickHandler = (e) => {
-    setEditorState((prev) => RichUtils.toggleInlineStyle(prev, "BOLD"));
+  const styles = ["BOLD", "ITALIC", "UNDERLINE"];
+  const mouseDownHandler = (style) => {
+    return () => {
+      setEditorState((prev) => RichUtils.toggleInlineStyle(prev, style));
+    };
   };
 
   return {
@@ -54,7 +56,8 @@ const useEditor = (date) => {
     editorState,
     onChange,
     readOnly,
-    clickHandler,
+    mouseDownHandler,
+    styles,
   };
 };
 

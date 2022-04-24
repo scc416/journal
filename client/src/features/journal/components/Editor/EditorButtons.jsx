@@ -1,11 +1,15 @@
 import { Button } from "@blueprintjs/core";
 
-const EditorButtons = ({ clickHandler }) => {
-  return (
-    <div>
-      <Button icon="BOLD" minimal={true} onMouseDown={clickHandler} />
-    </div>
-  );
+const EditorButtons = ({ mouseDownHandler, styles }) => {
+  const Buttons = styles.map((style) => (
+    <Button
+      key={style}
+      icon={style}
+      minimal={true}
+      onMouseDown={mouseDownHandler(style)}
+    />
+  ));
+  return <div>{Buttons}</div>;
 };
 
 export default EditorButtons;
