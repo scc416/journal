@@ -28,9 +28,7 @@ const Journal = () => {
             </FormGroup>
             <Calendar {...{ disabledDays, minDate, value }} />
           </div>
-          <div className="Editor-Container">
-            <Editor date={date} />
-          </div>
+          <Editor date={date} />
         </div>
       ) : (
         <Loading />

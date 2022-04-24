@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { EditorState } from "draft-js";
+import { EditorState, RichUtils } from "draft-js";
 import { saveJournal, deleteJournal } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
@@ -43,7 +43,18 @@ const useEditor = (date) => {
     }
   };
 
-  return { focusEditor, editor, editorState, onChange, readOnly };
+  const boldClickHandler = (e) => {
+    setEditorState((prev) => RichUtils.toggleInlineStyle(prev, "BOLD"));
+  };
+
+  return {
+    focusEditor,
+    editor,
+    editorState,
+    onChange,
+    readOnly,
+    boldClickHandler,
+  };
 };
 
 export default useEditor;

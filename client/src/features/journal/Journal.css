@@ -10,12 +10,6 @@
   align-items: flex-start;
 }
 
-.Editor-Container {
-  flex: 1;
-  align-self: stretch;
-  padding-left: 5em;
-}
-
 .bright .Editor,
 .bright .Journal input.bp4-input {
   background: #f9f9f9;
@@ -31,10 +25,18 @@
 }
 
 .Editor {
+  flex: 1;
   border-radius: 0.3em;
   min-height: 100%;
   cursor: text;
-  padding: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 5em;
+}
+
+.Editor > *:first-child {
+  padding: 3em;
 }
 
 .Journal .calendar-container .bp4-datepicker {
