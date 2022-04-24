@@ -1,3 +1,4 @@
+import "./Editor.css";
 import { Editor } from "draft-js";
 import useEditor from "common/hooks/useEditor";
 import EditorButtons from "./EditorButtons";

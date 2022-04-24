@@ -1,0 +1,21 @@
+.Journal .bp4-elevation-1 {
+  box-shadow: none;
+}
+
+.Journal .DayPicker-Day.DayPicker-Day--selected,
+.Journal .bp4-datepicker .DayPicker-Day,
+.Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
+  border-radius: 50%;
+}
+
+.Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
+  padding: 0.9em 0.8em;
+}
+
+.Journal .calendar-container .bp4-datepicker {
+  background: #00000000;
+}
+
+.Journal .bp4-divider {
+  border: none;
+}

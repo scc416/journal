@@ -1,0 +1,9 @@
+.Journal .DraftEditor-root,
+.Journal .DraftEditor-editorContainer {
+  flex: 1;
+  display: flex;
+}
+
+.Journal .notranslate.public-DraftEditor-content {
+  flex: 1;
+}
