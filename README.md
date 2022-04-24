@@ -3,12 +3,10 @@
 ## To-do
 
 - able to set title for journal
-- add styling function for the editor
-- show date on the journal
-- unable to change change journal for the pass events
 - search function
 - show "logged in as ..."
 - mobile friendly
+- unable to put new line into title
 
 ## Credits
 
