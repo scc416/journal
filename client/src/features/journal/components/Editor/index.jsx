@@ -18,11 +18,11 @@ const JournalEditor = ({ date }) => {
   return (
     <div className="Editor">
       <div>
-        <h3>{date}</h3>
+        <div>{date}</div>
         <TextArea
           large={true}
           placeholder="Title"
-          growVertically={false}
+          growVertically={true}
           // onChange={this.handleChange}
           // value={this.state.value}
         />

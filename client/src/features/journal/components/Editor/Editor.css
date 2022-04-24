@@ -1,12 +1,13 @@
 @import "draft-js/dist/Draft.css";
 
 .Journal .DraftEditor-root,
-.Journal .DraftEditor-editorContainer {
+.Journal .DraftEditor-editorContainer,
+.Journal .notranslate.public-DraftEditor-content {
   flex: 1;
   display: flex;
 }
 
-.Journal .notranslate.public-DraftEditor-content {
+.Journal .notranslate.public-DraftEditor-content > div {
   flex: 1;
 }
 
@@ -35,6 +36,9 @@
 
 .Editor > *:first-child {
   padding: 3em;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 textarea {
@@ -45,8 +49,17 @@ textarea {
   box-shadow: none;
 }
 
-
 .dark .Editor .bp4-dark textarea.bp4-input.bp4-large {
   background: #353538;
   box-shadow: none;
+}
+
+.Editor textarea.bp4-input.bp4-large {
+  padding: 0;
+  margin: 0.4em 0 0.6em;
+  height: 1.3em;
+  width: 100%;
+  font-family: "Open Sans";
+  font-size: 2.2em;
+  font-weight: 700;
 }
