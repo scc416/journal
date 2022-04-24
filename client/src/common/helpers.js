@@ -24,3 +24,9 @@ export const removeKey = (journals, date) => {
   delete result[date];
   return result;
 };
+
+export const countWords = (str) => {
+  const regex = / |\n/;
+  const words = str.split(regex).filter((word) => word);
+  return words.length;
+};

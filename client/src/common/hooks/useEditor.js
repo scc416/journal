@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { EditorState, RichUtils } from "draft-js";
+import { EditorState, RichUtils, getText } from "draft-js";
 import { saveJournal, deleteJournal } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
-import { getTodayDate } from "common/helpers";
+import { countWords } from "common/helpers";
 
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
@@ -19,13 +19,25 @@ const useEditor = (date) => {
       ? EditorState.createWithContent(convertFromRaw(data[date]))
       : EditorState.createEmpty()
   );
+  const [wordCount, setWordCount] = useState(
+    countWords(editorState.getCurrentContent().getPlainText())
+  );
+
+  const updateWordCount = (state) => {
+    if (state) {
+      return setWordCount(countWords(state.getCurrentContent().getPlainText()));
+    }
+    setWordCount(0);
+  };
 
   useEffect(() => {
     if (date in data) {
       const content = convertFromRaw(data[date]);
       setEditorState(EditorState.createWithContent(content));
+      updateWordCount(EditorState.createWithContent(content));
     } else {
       setEditorState(() => EditorState.createEmpty());
+      updateWordCount();
     }
   }, [date]);
 
@@ -36,6 +48,7 @@ const useEditor = (date) => {
   const onChange = (state) => {
     const content = state.getCurrentContent();
     const isEmpty = !content.hasText();
+    console.log(content.getPlainText());
     if (isEmpty) {
       dispatch(deleteJournal(date));
     } else {
@@ -43,6 +56,7 @@ const useEditor = (date) => {
       dispatch(saveJournal(rawContent, date));
     }
     setEditorState(state);
+    updateWordCount(state);
   };
 
   const mouseDownHandler = (style, list) => {
@@ -64,6 +78,7 @@ const useEditor = (date) => {
     mouseDownHandler,
     styles,
     lists,
+    wordCount,
   };
 };
 
