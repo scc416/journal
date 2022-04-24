@@ -5,7 +5,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 4em;
+  padding: 6em;
   justify-content: space-between;
   align-items: flex-start;
 }
@@ -16,12 +16,18 @@
   padding-left: 5em;
 }
 
-.bright .Editor {
-  background: #fff;
+.bright .Editor,
+.bright .Journal input.bp4-input {
+  background: #f9f9f9;
 }
 
-.dark .Editor {
-  background: #1114148d;
+.Journal input.bp4-input {
+  box-shadow: none;
+}
+
+.dark .Editor,
+.dark .Journal input.bp4-input {
+  background: #353538;
 }
 
 .Editor {
@@ -47,6 +53,10 @@
 .Journal .bp4-datepicker .DayPicker-Day,
 .Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
   border-radius: 50%;
+}
+
+.Journal .bp4-datepicker .bp4-datepicker-day-wrapper {
+  padding: 0.8em;
 }
 
 .calendar-container {

@@ -15,6 +15,8 @@ const JournalEditor = ({ date }) => {
     if (date in data) {
       const content = convertFromRaw(data[date]);
       setEditorState(EditorState.createWithContent(content));
+    } else {
+      setEditorState(() => EditorState.createEmpty());
     }
   }, [date]);
 
