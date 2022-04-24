@@ -35,12 +35,12 @@
   background: #00000000;
 }
 
-.Journal .bp4-elevation-1 {
+.Journal .bp4-divider {
   border: none;
 }
 
-.Journal .bp4-divider {
-  border: none;
+.Journal .bp4-elevation-1 {
+  box-shadow: none;
 }
 
 .Journal .DayPicker-Day.DayPicker-Day--selected,
