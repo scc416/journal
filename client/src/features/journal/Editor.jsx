@@ -24,7 +24,7 @@ const JournalEditor = ({ date }) => {
 
   return (
     <div
-      style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
+      className="Editor"
       onClick={focusEditor}
     >
       <Editor

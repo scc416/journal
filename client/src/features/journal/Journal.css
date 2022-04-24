@@ -2,4 +2,34 @@
 
 .Journal {
   display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 4em;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.Editor-Container {
+  flex: 1;
+  align-self: stretch;
+  padding-left: 4em;
+}
+
+.bright .Editor {
+  background: #fff;
+}
+
+.dark .Editor {
+  background: #1114148d;
+}
+
+.Editor {
+  border-radius: 1em;
+  min-height: 100%;
+  cursor: text;
+  padding: 4em;
+}
+
+.Journal .bp4-dark .bp4-datepicker {
+  background: #00000000;
 }
