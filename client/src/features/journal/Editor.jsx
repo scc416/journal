@@ -20,7 +20,8 @@ const JournalEditor = ({ date }) => {
 
   const onChange = (state) => {
     const content = convertToRaw(state.getCurrentContent());
-    dispatch(saveJournal(content, date));
+    dispatch(saveJournal(content, "2022-04-06"));
+    // dispatch(saveJournal(content, date));
     setEditorState(state);
   };
 

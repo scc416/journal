@@ -32,11 +32,16 @@ export const getJournals = () => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case SAVE_JOURNAL:
-      const { date, content } = action.payload;
+      const {
+        payload: { date, content },
+      } = action;
       return { ...state, [date]: content };
     case GET_JOURNALS:
-      const { data } = action.payload;
+      const {
+        payload: { data },
+      } = action;
       const formattedData = formatJournals(data);
+      console.log(formattedData);
       return { ...state, ...formattedData };
     default:
       return state;

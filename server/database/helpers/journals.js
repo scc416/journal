@@ -4,7 +4,7 @@ const queryGenerator = (db) => {
 
     const queryString = `
       SELECT * FROM journals
-      WHERE id = $1;`;
+      WHERE user_id = $1;`;
 
     try {
       const { rows } = await db.query(queryString, values);
@@ -38,7 +38,6 @@ const queryGenerator = (db) => {
 
     try {
       const { rows } = await db.query(querySelectString, values1);
-
       const result = rows.length
         ? await db.query(queryUpdateString, values2)
         : await db.query(queryInsertString, values2);

@@ -62,8 +62,11 @@ export const register = (id, password, confirmPassword, fn) => {
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case RECEIVE_USER:
-      if (!action.payload.username) return "";
-      return action.payload.username;
+      const {
+        payload: { username },
+      } = action;
+      if (!username) return "";
+      return username;
     default:
       return state;
   }

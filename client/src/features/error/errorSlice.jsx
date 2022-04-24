@@ -15,10 +15,14 @@ export const removeError = { type: REMOVE_ERROR };
 const reducer = (state = initState, action) => {
   switch (action.type) {
     case DISPLAY_ERROR:
+      const {
+        payload: { error },
+      } = action;
+      const { trackErrorChange } = state;
       return {
         ...state,
-        error: action.payload.error,
-        trackErrorChange: !state.trackErrorChange,
+        error,
+        trackErrorChange: !trackErrorChange,
       };
     case REMOVE_ERROR:
       return { ...state, error: null };
