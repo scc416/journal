@@ -1,7 +1,7 @@
 import "./Journal.css";
 import LogoutButton from "features/auth/LogoutButton";
-import Calendar from "./Calendar";
-import Editor from "./Editor";
+import Calendar from "./Calendar/";
+import Editor from "./Editor/";
 import { useParams } from "react-router-dom";
 import useJournal from "common/hooks/useJournal";
 import { InputGroup, FormGroup } from "@blueprintjs/core";

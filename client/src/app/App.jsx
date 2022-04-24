@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import LogIn from "features/auth/LogIn";
 import Register from "features/auth/Register";
-import Journal from "features/journal/Journal";
+import Journal from "features/journal/components";
 import Redirect from "features/redirect/Redirect";
 import Loading from "features/loading/Loading";
 import useCurrentUser from "common/hooks/useCurrentUser";

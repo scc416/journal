@@ -1,3 +1,5 @@
+@import "@blueprintjs/datetime/lib/css/blueprint-datetime.css";
+
 .Journal .bp4-elevation-1 {
   box-shadow: none;
 }
