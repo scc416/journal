@@ -1,5 +1,5 @@
 import moment from "moment";
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 
 export const today = () => moment().toDate();
 export const toDate = (date) => moment(date).toDate();
@@ -11,11 +11,16 @@ export const getLongDate = (date) => moment(date).format("dddd, MMMM D, YYYY");
 export const getFormattedDate = (date) =>
   checkIfValid(date) && formatDate(date);
 
+export const getText = (content) => {
+  return convertFromRaw(content).getPlainText();
+};
+
 export const formatJournals = (data) => {
   const result = {};
   for (const row of data) {
     const { date, content, title } = row;
-    result[formatDate(date)] = { title, content };
+    const text = getText(content);
+    result[formatDate(date)] = { title, content, text };
   }
   return result;
 };

@@ -4,6 +4,7 @@
 
 - search function
 - mobile friendly
+- enter password when first opened/there is no action from user for 5 minutes
 
 ## Credits
 
