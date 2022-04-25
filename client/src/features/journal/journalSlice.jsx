@@ -48,8 +48,12 @@ export const getJournals = () => {
 };
 
 export const deleteJournal = (date) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
     try {
+      dispatch({ type: DELETE_JOURNAL, payload: { date } });
+      const {
+        journals: { editCount: oldCount },
+      } = getState();
       setTimeout(async () => {
         const {
           journals: { editCount: newCount },
@@ -59,7 +63,6 @@ export const deleteJournal = (date) => {
           dispatch({ type: UPDATE_SAVED });
         }
       }, saveTimeout);
-      dispatch({ type: DELETE_JOURNAL, payload: { date } });
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
