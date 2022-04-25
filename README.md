@@ -4,6 +4,8 @@
 
 - test delete function
 - hide today's diary from result list if blank
+- make last month diary available, even if empty
+- remove mutation from reducer
 - deployment
 
 ## Credits
