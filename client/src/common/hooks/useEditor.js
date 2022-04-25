@@ -61,7 +61,6 @@ const useEditor = (date) => {
       const state = EditorState.createWithContent(content);
       setEditorState(state);
       updateWordCount(state);
-
       updateTitle(data[date].title);
     } else {
       setEditorState(() => EditorState.createEmpty());

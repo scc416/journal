@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import {
-  today,
   toDate,
   getFormattedDate,
   getTodayDate,
   formatDate,
   getMinDate,
+  compareDate,
+  getLatestMinDate,
 } from "common/helpers";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -21,14 +22,16 @@ const useJournal = (date) => {
     }
   );
   const dates = Object.keys(journals);
-  const minDate = getMinDate(dates.length && toDate(dates[0]));
+  const minDate = getMinDate(dates.length && dates[0]);
   const dispatch = useDispatch();
+  console.log(minDate, getLatestMinDate());
 
   const disabledDays = (date) => {
     const formatted = formatDate(date);
     const hasJorunal = dates.includes(formatDate(date));
     const isToday = formatted === getTodayDate();
-    return !hasJorunal && !isToday;
+    const afterMinDate = compareDate(getLatestMinDate(), date);
+    return !hasJorunal && !isToday && !afterMinDate;
   };
 
   const dateIsAvailable = !disabledDays(date);
