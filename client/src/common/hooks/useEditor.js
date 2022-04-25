@@ -4,6 +4,7 @@ import {
   saveJournal,
   deleteJournal,
   clearStatus,
+  showSavedTimeout,
 } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
@@ -106,7 +107,7 @@ const useEditor = (date) => {
 
   useEffect(() => {
     if (saved) {
-      const t = setTimeout(() => dispatch(clearStatus), 3000);
+      const t = setTimeout(() => dispatch(clearStatus), showSavedTimeout);
       return () => clearTimeout(t);
     }
   }, [saved]);

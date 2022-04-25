@@ -9,6 +9,9 @@ const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
 const UPDATE_SAVED = "journal/UPDATE_SAVED";
 const REMOVE_SAVED = "journal/REMOVE_SAVED";
 
+export const showSavedTimeout = 3000;
+const saveTimeout = 3000;
+
 export const clearStatus = { type: REMOVE_SAVED };
 
 export const saveJournal = (content, date, title) => {
@@ -22,12 +25,11 @@ export const saveJournal = (content, date, title) => {
         const {
           journals: { saveCount: newCount },
         } = getState();
-        console.log(oldCount, newCount);
         if (oldCount === newCount) {
           await axios.post("/api/journals", { content, date, title });
           dispatch({ type: UPDATE_SAVED });
         }
-      }, 3000);
+      }, saveTimeout);
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
