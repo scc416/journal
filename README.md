@@ -2,9 +2,7 @@
 
 ## To-do
 
-- test delete function
 - use useState to store value in hooks
-- fix bug when picking month
 - deployment
 
 ## Credits

@@ -9,6 +9,7 @@ import {
   getLatestMinDate,
   getNextDay,
   getStyledDate,
+  getFirstDay,
 } from "common/helpers";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -68,7 +69,7 @@ const useJournal = (date) => {
     }
     const css = cssArr.join("");
     setCss(css);
-    console.log("update css")
+    console.log("update css");
   }, [journals]);
 
   const dateIsAvailable = !disabledDays(date);
@@ -83,12 +84,18 @@ const useJournal = (date) => {
 
   useEffect(() => {
     if (gotData) {
-      if (!formattedDate || !dateIsAvailable) {
+      if (!formattedDate) {
         console.log("navigate(`/journal/${getTodayDate()}`)");
         navigate(`/journal/${getTodayDate()}`);
-      } else if (!correctDateFormat) {
-        console.log(`/journal/${formattedDate}`);
+      } else if (!dateIsAvailable) {
+        let day = getFirstDay(formattedDate);
 
+        while (disabledDays(day)) {
+          day = getNextDay(day);
+        }
+
+        navigate(`/journal/${day}`);
+      } else if (!correctDateFormat) {
         navigate(`/journal/${formattedDate}`);
       }
     }
