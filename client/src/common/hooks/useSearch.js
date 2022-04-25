@@ -32,10 +32,8 @@ const useSearch = () => {
   };
 
   useEffect(() => {
-
-      const t = setTimeout(updateResults, 500);
-      return () => clearTimeout(t);
-  
+    const t = setTimeout(updateResults, 500);
+    return () => clearTimeout(t);
 
     // eslint-disable-next-line
   }, [search, data]);

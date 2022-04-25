@@ -2,7 +2,7 @@ import "./Calendar.css";
 import { DatePicker } from "@blueprintjs/datetime";
 import { Classes } from "@blueprintjs/core";
 import { useNavigate } from "react-router-dom";
-import { formatDate, today, getMonth } from "common/helpers";
+import { formatDate, today, getAvailableDate } from "common/helpers";
 
 const settings = () => {
   return {
@@ -21,8 +21,7 @@ const Calendar = ({ value, disabledDays, minDate, dates }) => {
       if (available) {
         return navigate(`/journal/${formattedDate}`);
       }
-      const month = getMonth(formattedDate);
-      const day = dates.find((date) => date.includes(month));
+      const day = getAvailableDate(formattedDate, dates);
       navigate(`/journal/${day}`);
     }
   };

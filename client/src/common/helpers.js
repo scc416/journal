@@ -4,9 +4,15 @@ import { convertFromRaw } from "draft-js";
 const numOfAlarmMinutes = 60;
 const beforeToday = 1;
 
-export const getMonth = (date) => {
+const getMonth = (date) => {
   const month = moment(date).format("YYYY-MM");
   return month;
+};
+
+export const getAvailableDate = (date, dates) => {
+  const month = getMonth(date);
+  const day = dates.find((date) => date.includes(month));
+  return day;
 };
 
 const convertTimeToStr = (time) => {

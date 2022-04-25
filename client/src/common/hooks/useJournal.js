@@ -9,7 +9,7 @@ import {
   getLatestMinDate,
   getNextDay,
   getStyle,
-  getMonth,
+  getAvailableDate,
 } from "common/helpers";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -17,17 +17,16 @@ import { getJournals } from "features/journal/journalSlice";
 import { useDispatch } from "react-redux";
 
 const useJournal = (date) => {
-  const formattedDate = getFormattedDate(date);
+  const [css, setCss] = useState("");
+
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
   const { journals, gotData } = useSelector(
     ({ journals: { data, gotData } }) => {
       return { journals: data, gotData };
     }
   );
-
-  const dates = Object.keys(journals);
-  const minDate = getMinDate(dates.length && dates[0]);
-  const dispatch = useDispatch();
 
   const disabledDays = (date) => {
     const formatted = formatDate(date);
@@ -37,7 +36,12 @@ const useJournal = (date) => {
     return !hasJorunal && !isToday && !afterMinDate;
   };
 
-  const [css, setCss] = useState("");
+  const formattedDate = getFormattedDate(date);
+  const dates = Object.keys(journals);
+  const minDate = getMinDate(dates.length && dates[0]);
+  const dateIsAvailable = !disabledDays(date);
+  const correctDateFormat = formattedDate === date;
+  const validDate = formattedDate && dateIsAvailable && correctDateFormat;
 
   useEffect(() => {
     const cssArr = [];
@@ -54,11 +58,6 @@ const useJournal = (date) => {
     // eslint-disable-next-line
   }, [journals]);
 
-  const dateIsAvailable = !disabledDays(date);
-  const correctDateFormat = formattedDate === date;
-
-  const validDate = formattedDate && dateIsAvailable && correctDateFormat;
-
   useEffect(() => {
     dispatch(getJournals());
     // eslint-disable-next-line
@@ -69,8 +68,7 @@ const useJournal = (date) => {
       if (!formattedDate) {
         navigate(`/journal/${getTodayDate()}`);
       } else if (!dateIsAvailable) {
-        const month = getMonth(formattedDate);
-        const day = dates.find((date) => date.includes(month));
+        const day = getAvailableDate(formattedDate, dates);
         navigate(`/journal/${day}`);
       } else if (!correctDateFormat) {
         navigate(`/journal/${formattedDate}`);
@@ -87,7 +85,7 @@ const useJournal = (date) => {
     value: toDate(date),
     date,
     css,
-    dates
+    dates,
   };
 };
 
