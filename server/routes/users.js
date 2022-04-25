@@ -7,6 +7,7 @@ const {
   ERROR_BLANK_USERNAME,
   ERROR_PASSWORDS_NOT_MATCH,
   ERROR_USERNAME_ALREADY_TAKEN,
+  ERROR_USERNAME_TOO_LONG,
 } = require("../constants");
 const queryGenerator = require("../database/helpers/users");
 
@@ -39,6 +40,7 @@ module.exports = (db) => {
 
     try {
       if (!username) throw new Error(ERROR_BLANK_USERNAME);
+      if (username.legnth > 25) throw new Error(ERROR_USERNAME_TOO_LONG);
       if (!password || !confirmPassword) throw new Error(ERROR_BLANK_PASSWORD);
 
       const passwordIsSame = confirmPassword === password;
