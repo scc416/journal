@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 import { countWords } from "common/helpers";
 // import { countWords, formatDate } from "common/helpers";
-// import moment from "moment";
+import moment from "moment";
 
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
@@ -86,7 +86,7 @@ const useEditor = (date) => {
     } else {
       const rawContent = convertToRaw(content);
       dispatch(
-        // saveJournal(rawContent, formatDate(moment().subtract(20, "days")), title)
+        // saveJournal(rawContent, formatDate(moment().subtract(40, "days")), title)
         saveJournal(rawContent, date, title)
       );
     }

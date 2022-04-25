@@ -52,7 +52,7 @@ const useJournal = (date) => {
       }
     }
     // eslint-disable-next-line
-  }, [gotData]);
+  }, [gotData, formattedDate, dateIsAvailable, correctDateFormat]);
 
   return {
     gotData,
