@@ -13,10 +13,6 @@
   background: #f9f9f9;
 }
 
-.Journal input.bp4-input {
-  box-shadow: none;
-}
-
 .dark .Editor,
 .dark .Journal input.bp4-input,
 .dark .Editor textarea.bp4-input.bp4-large {

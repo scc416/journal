@@ -78,7 +78,6 @@ const reducer = (state = initState, action) => {
         payload: { data: receivedData },
       } = action;
       const formattedData = formatJournals(receivedData);
-      console.log(formattedData);
       return { ...state, data: formattedData, gotData: true };
     case DELETE_JOURNAL:
       const {

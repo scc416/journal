@@ -16,6 +16,18 @@
   flex: 1;
 }
 
+.dark .Editor {
+  box-shadow: 0 0 0 0 rgb(76 144 240 / 0%), 0 0 0 0 rgb(76 144 240 / 0%),
+    0 0 0 0 rgb(76 144 240 / 0%), inset 0 0.05em 0 0 rgb(17 20 24 / 60%),
+    inset -0.05em 0 0 rgb(17 20 24 / 60%), inset 0.05em 0 0 rgb(17 20 24 / 60%),
+    inset 0 -0.05em 0 0 #8f99a8;
+}
+
+.bright .Editor {
+  box-shadow: 0 0 0 0 rgb(45 114 210 / 0%), 0 0 0 0 rgb(45 114 210 / 0%),
+    inset 0 0 0 0.05em rgb(17 20 24 / 20%), inset 0 0.05em 0.05em rgb(17 20 24 / 50%);
+}
+
 .Editor {
   flex: 1;
   border-radius: 0.3em;
