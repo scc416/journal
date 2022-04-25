@@ -1,32 +1,29 @@
 import moment from "moment";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 
-const numOfAlarmMinutes = 60;
+const numOfAlarmMinutes = 5;
 const minDateMonthsBeforeToday = 1;
 
-export const convertTimeToInt = (time) => {
-  const str = moment(time).format("x");
-  const int = parseInt(str);
-  return int;
+export const convertTimeToStr = (time) => {
+  const str = moment(time).format();
+  return str;
 };
 
 export const getAlarm = () => {
   const alarm = moment().add(numOfAlarmMinutes, "seconds");
-  const int = convertTimeToInt(alarm);
+  const int = convertTimeToStr(alarm);
   return int;
 };
 
 const compareDate = (date1, date2) => {
-  const formattedDate1 =
-    typeof date1 === "Number" ? date1 : convertTimeToInt(date1);
-  const formattedDate2 =
-    typeof date2 === "Number" ? date2 : convertTimeToInt(date2);
+  const formattedDate1 = moment(date1);
+  const formattedDate2 = moment(date2);
   return formattedDate1 < formattedDate2;
 };
 
 export const getMinDate = (date) => {
   const beforeNow = moment().subtract(minDateMonthsBeforeToday, "months");
-  const dateIsEarlier = compareDate(beforeNow, date);
+  const dateIsEarlier = compareDate(date, beforeNow);
   if (dateIsEarlier) return date;
   return beforeNow.toDate();
 };
