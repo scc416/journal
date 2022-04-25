@@ -24,7 +24,6 @@ const useJournal = (date) => {
   const dates = Object.keys(journals);
   const minDate = getMinDate(dates.length && dates[0]);
   const dispatch = useDispatch();
-  console.log(minDate, getLatestMinDate());
 
   const disabledDays = (date) => {
     const formatted = formatDate(date);

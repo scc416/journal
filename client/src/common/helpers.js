@@ -30,7 +30,7 @@ export const getLatestMinDate = () => {
 
 export const getMinDate = (date) => {
   const beforeNow = getLatestMinDate();
-  const dateIsEarlier = compareDate(date, beforeNow, beforeNow);
+  const dateIsEarlier = compareDate(date, beforeNow);
   if (dateIsEarlier) return moment(date).toDate();
   return moment(beforeNow).toDate();
 };

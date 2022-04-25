@@ -3,7 +3,6 @@
 ## To-do
 
 - test delete function
-- hide today's diary from result list if blank
 - make last month diary available, even if empty
 - use useState to store value in hooks
 - deployment

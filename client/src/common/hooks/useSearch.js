@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { compareDate } from "common/helpers";
 
 const useSearch = () => {
   const [search, setSearch] = useState("");
@@ -18,7 +19,11 @@ const useSearch = () => {
       if (foundInTitle || foundInContent) newResults.push({ date, title });
     }
 
-    setResults(newResults);
+    setResults(
+      newResults.sort(({ date }, { date: date2 }) => {
+        return compareDate(date, date2) ? 1 : -1;
+      })
+    );
   };
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const useSearch = () => {
     return () => clearTimeout(t);
 
     // eslint-disable-next-line
-  }, [search]);
+  }, [search, data]);
 
   const changeHandler = (e) => setSearch(e.target.value);
 
