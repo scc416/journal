@@ -8,7 +8,6 @@ const settings = () => {
   return {
     className: Classes.ELEVATION_1,
     highlightCurrentDay: true,
-    showActionsBar: true,
     maxDate: today(),
   };
 };

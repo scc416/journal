@@ -6,4 +6,6 @@
 
 .Logout-Button > * {
   margin-left: 0.7em;
+  z-index: 2;
+  position: relative;
 }
