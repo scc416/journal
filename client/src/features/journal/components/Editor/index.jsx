@@ -1,9 +1,7 @@
 import "./Editor.css";
-import { Editor } from "draft-js";
-import Title from "./Title";
 import useEditor from "common/hooks/useEditor";
 import Toolbar from "./Toolbar";
-import { getLongDate } from "common/helpers";
+import Main from "./Main";
 
 const JournalEditor = ({ date }) => {
   const {
@@ -23,25 +21,18 @@ const JournalEditor = ({ date }) => {
 
   return (
     <div className="Editor">
-      <div>
-        <div>{getLongDate(date)}</div>
-        <Title
-          {...{
-            titleRef: titleRef,
-            keyDownHandler: titleKeyDownHandler,
-            keyUpHandler: titleKeyUpHandler,
-          }}
-        />
-        <Editor
-          {...{
-            onChange,
-            editorState,
-            ref: editor,
-            placeholder: "How was your day?",
-            onClick: focusEditor,
-          }}
-        />
-      </div>
+      <Main
+        {...{
+          onChange,
+          editorState,
+          editor,
+          focusEditor,
+          date,
+          titleRef,
+          titleKeyDownHandler,
+          titleKeyUpHandler,
+        }}
+      />
       <Toolbar {...{ saved, mouseDownHandler, styles, lists, wordCount }} />
     </div>
   );

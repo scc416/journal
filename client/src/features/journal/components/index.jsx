@@ -3,7 +3,7 @@ import LogoutButton from "features/auth/LogoutButton";
 import { useParams } from "react-router-dom";
 import useJournal from "common/hooks/useJournal";
 import Loading from "features/loading/Loading";
-import Content from "./Content";
+import Main from "./Main";
 
 const Journal = () => {
   const { date } = useParams();
@@ -13,7 +13,7 @@ const Journal = () => {
     <>
       <LogoutButton />
       {gotData && validDate ? (
-        <Content {...{ disabledDays, minDate, value, date }} />
+        <Main {...{ disabledDays, minDate, value, date }} />
       ) : (
         <Loading />
       )}
