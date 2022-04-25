@@ -10,7 +10,7 @@ const cors = require("cors");
 
 const corsOptions = {
   origin: "https://the-journals.netlify.app/",
-  methods: "GET,POST",
+  methods: "GET,POST,DELETE",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
