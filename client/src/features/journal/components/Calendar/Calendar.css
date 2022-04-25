@@ -25,7 +25,8 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
-  max-height: 100%;
+  justify-content: space-between;
+  height: 100%;
   margin-bottom: 1.5em;
 }
 

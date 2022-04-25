@@ -1,9 +1,12 @@
 .search-result {
   overflow-y: scroll;
   overflow-x: hidden;
+  margin: 0.8em 0;
+  max-height: 100%;
+  flex: 1;
 }
 
 .search-result > * {
   margin: 1em 0.2em;
-  width: 100%;
+  max-width: 100%;
 }
