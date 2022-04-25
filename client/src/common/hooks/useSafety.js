@@ -12,7 +12,7 @@ const useSafety = () => {
   useEffect(() => {
     if (!locked) {
       const t = setInterval(() => {
-        if (getNow() > alarm) dispatch(lock);
+        if (new Date(getNow()) > new Date(alarm)) dispatch(lock);
         console.log(getNow(), alarm);
       }, 1000);
       return () => clearInterval(t);
