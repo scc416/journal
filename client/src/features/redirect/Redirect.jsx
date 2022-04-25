@@ -7,9 +7,9 @@ import useCurrentUser from "common/hooks/useCurrentUser";
 const Redirect = () => {
   const navigate = useNavigate();
   const { username } = useCurrentUser();
-  const url = username === "" ? "/login" : `/journal/${getTodayDate()}`;
 
   useEffect(() => {
+    const url = username === "" ? "/login" : `/journal/${getTodayDate()}`;
     navigate(url);
     // eslint-disable-next-line
   }, []);
