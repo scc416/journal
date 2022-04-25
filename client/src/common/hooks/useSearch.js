@@ -9,7 +9,6 @@ const useSearch = () => {
   const data = useSelector(({ journals: { data } }) => data);
 
   const updateResults = () => {
-    console.log("UPDATING RESULT");
     const newResults = [];
 
     for (const date in data) {
