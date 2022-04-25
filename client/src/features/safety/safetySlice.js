@@ -2,6 +2,8 @@ import { getAlarm } from "common/helpers";
 
 const initState = { alarm: null, locked: true };
 
+export const CHECK_LOCK_INTERVAL = 1000;
+
 const LOCK = "safety/LOCK";
 const UNLOCK = "safety/UNLOCK";
 const UPDATE_ALARM = "safety/UPDATE_ALARM";
