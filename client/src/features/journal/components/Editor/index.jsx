@@ -29,6 +29,8 @@ const JournalEditor = ({ date }) => {
   const keyUpHandler = (e) => {
     const val = e.target.value;
     textAreaRef.current.value = val.replace(/\n/g, " ");
+    textAreaRef.current.height = "auto";
+    textAreaRef.current.height = textAreaRef.current.scrollHeight + "px";
   };
 
   return (
