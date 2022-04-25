@@ -2,11 +2,11 @@
   display: flex;
   width: 100%;
   height: 100%;
-  margin: 6em 0 2.5em 0;
-  padding: 0 6em 3.5em 6em;
+  margin: 4em 0 1.25em 0;
+  padding-bottom: 1.75em;
   flex-direction: column;
+  align-items: center;
   overflow-y: scroll;
-  align-items: stretch;
 }
 
 .bright .Editor,
@@ -19,6 +19,14 @@
 .dark .Journal input.bp4-input,
 .dark .Editor textarea.bp4-input.bp4-large {
   background: #353538;
+}
+
+@media (min-width: 420px) {
+  .Journal {
+    margin: 6em 0 2.5em 0;
+    padding: 0 6em 3.5em 6em;
+    align-items: stretch;
+  }
 }
 
 @media (min-width: 900px) {

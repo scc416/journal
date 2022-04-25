@@ -2,7 +2,7 @@
 
 ## To-do
 
-- mobile friendly
+- deployment
 
 ## Credits
 

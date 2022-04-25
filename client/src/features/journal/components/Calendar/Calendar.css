@@ -24,24 +24,40 @@
 
 .calendar-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   height: 100%;
   margin-bottom: 1.5em;
+  flex-direction: column;
 }
 
 .calendar-container > *:last-child {
   align-self: center;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 1em;
+  align-items: flex-end;
+}
+
+@media (min-width: 420px) {
+  .calendar-container {
+    flex-direction: row;
+    height: 20em;
+  }
 }
 
 @media (min-width: 900px) {
   .calendar-container {
+    height: 100%;
     width: 20em;
     margin-bottom: 0;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .calendar-container > *:last-child {
+    margin-top: 1em;
+  }
+
+  .calendar-container > *:first-child {
+    width: 100%;
   }
 }

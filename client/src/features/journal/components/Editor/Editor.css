@@ -39,6 +39,7 @@
   justify-content: space-between;
   padding-top: 3.3em;
   margin-bottom: 1em;
+  width: 20em;
 }
 
 .Editor > *:first-child {
@@ -90,6 +91,12 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+@media (min-width: 420px) {
+  .Editor {
+    width: auto;
+  }
 }
 
 @media (min-width: 900px) {
