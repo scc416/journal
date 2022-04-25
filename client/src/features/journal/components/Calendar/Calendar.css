@@ -25,6 +25,8 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
+  width: 20em;
+  max-height: 100%;
 }
 
 .calendar-container > *:first-child {
