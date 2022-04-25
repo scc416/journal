@@ -1,6 +1,6 @@
 import Calendar from "./Calendar/";
 import Editor from "./Editor/";
-import SearchInput from "./SearchInput";
+import SearchInput from "./SearchInput/";
 
 const Content = ({ disabledDays, minDate, value, date }) => {
   return (
