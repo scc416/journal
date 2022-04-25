@@ -4,7 +4,6 @@ import { TextArea } from "@blueprintjs/core";
 import useEditor from "common/hooks/useEditor";
 import EditorButtons from "./EditorButtons";
 import { getLongDate } from "common/helpers";
-import { useRef } from "react";
 
 const JournalEditor = ({ date }) => {
   const {
@@ -16,22 +15,10 @@ const JournalEditor = ({ date }) => {
     styles,
     lists,
     wordCount,
+    TitleRef,
+    titleKeyDownHandler,
+    titleKeyUpHandler,
   } = useEditor(date);
-
-  const textAreaRef = useRef();
-
-  const keyDownHandler = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  };
-
-  const keyUpHandler = (e) => {
-    const val = e.target.value;
-    textAreaRef.current.value = val.replace(/\n/g, " ");
-    textAreaRef.current.height = "auto";
-    textAreaRef.current.height = textAreaRef.current.scrollHeight + "px";
-  };
 
   return (
     <div className="Editor">
@@ -41,10 +28,9 @@ const JournalEditor = ({ date }) => {
           large={true}
           placeholder="Title"
           maxLength={60}
-          // growVertically={true}
-          inputRef={textAreaRef}
-          onKeyDown={keyDownHandler}
-          onKeyUp={keyUpHandler}
+          inputRef={TitleRef}
+          onKeyDown={titleKeyDownHandler}
+          onKeyUp={titleKeyUpHandler}
         />
         <Editor
           {...{

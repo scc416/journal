@@ -4,7 +4,6 @@
 
 - able to set title for journal
 - search function
-- show "logged in as ..."
 - mobile friendly
 
 ## Credits

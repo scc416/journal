@@ -70,6 +70,21 @@ const useEditor = (date) => {
     };
   };
 
+  const TitleRef = useRef();
+
+  const titleKeyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
+  const titleKeyUpHandler = (e) => {
+    const val = e.target.value;
+    TitleRef.current.value = val.replace(/\n/g, " ");
+    TitleRef.current.height = "auto";
+    TitleRef.current.height = TitleRef.current.scrollHeight + "px";
+  };
+
   return {
     focusEditor,
     editor,
@@ -79,6 +94,9 @@ const useEditor = (date) => {
     styles,
     lists,
     wordCount,
+    TitleRef,
+    titleKeyDownHandler,
+    titleKeyUpHandler,
   };
 };
 

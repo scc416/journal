@@ -24,17 +24,6 @@ const runSchemaFiles = async () => {
   }
 };
 
-const runSeedFiles = async () => {
-  console.log(`-> Loading Seeds ...`);
-  const schemaFilenames = fs.readdirSync("./database/seeds");
-
-  for (const fn of schemaFilenames) {
-    const sql = fs.readFileSync(`./database/seeds/${fn}`, "utf8");
-    console.log(`\t-> Running ${fn}`);
-    await db.query(sql);
-  }
-};
-
 const runResetDB = async () => {
   try {
     dbParams.host &&
@@ -43,7 +32,6 @@ const runResetDB = async () => {
       console.log(`-> Connecting to PG with ${dbParams.connectionString}...`);
     await db.connect();
     await runSchemaFiles();
-    await runSeedFiles();
     db.end();
   } catch (err) {
     console.error(`Failed due to error: ${err}`);
