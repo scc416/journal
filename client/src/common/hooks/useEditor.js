@@ -9,7 +9,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 
-
 import { countWords } from "common/helpers";
 
 // Uncomment 2 lines below and comment the line above
@@ -46,10 +45,9 @@ const useEditor = (date) => {
   };
 
   const [editorState, setEditorState] = useState(() =>
-    date in data
-      ? EditorState.createWithContent(convertFromRaw(data[date].content))
-      : EditorState.createEmpty()
+    EditorState.createEmpty()
   );
+
   const [wordCount, setWordCount] = useState(
     countWords(editorState.getCurrentContent().getPlainText())
   );
@@ -69,7 +67,8 @@ const useEditor = (date) => {
       updateWordCount(state);
       updateTitle(data[date].title);
     } else {
-      setEditorState(() => EditorState.createEmpty());
+      const state = () => EditorState.createEmpty();
+      setEditorState(state);
       updateWordCount();
       updateTitle("");
     }
@@ -78,6 +77,7 @@ const useEditor = (date) => {
   }, [date]);
 
   const editor = useRef(null);
+  
   const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
