@@ -1,10 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { EditorState, RichUtils } from "draft-js";
-import { saveJournal, deleteJournal } from "features/journal/journalSlice";
+import {
+  saveJournal,
+  deleteJournal,
+  clearStatus,
+} from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 import { countWords, formatDate } from "common/helpers";
 import moment from "moment";
+
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
   { style: "ordered-list-item", icon: "numbered-list" },
@@ -12,7 +17,9 @@ const lists = [
 ];
 
 const useEditor = (date) => {
-  const data = useSelector(({ journals: { data } }) => data);
+  const { data, saved } = useSelector(({ journals: { data, saved } }) => {
+    return { data, saved };
+  });
 
   const titleRef = useRef();
 
@@ -97,6 +104,13 @@ const useEditor = (date) => {
     };
   };
 
+  useEffect(() => {
+    if (saved) {
+      const t = setTimeout(() => dispatch(clearStatus), 3000);
+      return () => clearTimeout(t);
+    }
+  }, [saved]);
+
   return {
     focusEditor,
     editor,
@@ -109,6 +123,7 @@ const useEditor = (date) => {
     titleRef,
     titleKeyDownHandler,
     titleKeyUpHandler,
+    saved,
   };
 };
 

@@ -69,7 +69,6 @@ const queryGenerator = (db) => {
       RETURNING *;`;
 
     try {
-      console.log(id, date);
       await db.query(queryDeleteString, values);
     } catch (e) {
       throw e;

@@ -18,6 +18,7 @@ const JournalEditor = ({ date }) => {
     titleRef,
     titleKeyDownHandler,
     titleKeyUpHandler,
+    saved,
   } = useEditor(date);
 
   return (
@@ -44,6 +45,7 @@ const JournalEditor = ({ date }) => {
       </div>
       <div className="Editor-Toolbar">
         <EditorButtons {...{ mouseDownHandler, styles, lists }} />
+        <div>{saved ? "Saved" : saved === false && "Saving..."}</div>
         <div>{wordCount}</div>
       </div>
     </div>
