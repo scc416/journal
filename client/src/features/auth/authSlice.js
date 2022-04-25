@@ -23,8 +23,9 @@ export const logIn = (id, password, fn, successFn) => {
         username: id,
         password,
       });
+      console.log(username);
       dispatch({ type: RECEIVE_USER, payload: { username } });
-      successFn();
+      if (successFn) successFn();
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
