@@ -2,7 +2,7 @@ import axios from "axios";
 import { displayError } from "../error/errorSlice";
 import { formatJournals, removeContent } from "common/helpers";
 
-const initState = { data: {}, gotData: false, saved: null, saveCount: 0 };
+const initState = { data: {}, gotData: false, saved: null, editCount: 0 };
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
 const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
@@ -19,11 +19,11 @@ export const saveJournal = (content, date, title) => {
     try {
       dispatch({ type: SAVE_JOURNAL, payload: { date, content, title } });
       const {
-        journals: { saveCount: oldCount },
+        journals: { editCount: oldCount },
       } = getState();
       setTimeout(async () => {
         const {
-          journals: { saveCount: newCount },
+          journals: { editCount: newCount },
         } = getState();
         if (oldCount === newCount) {
           await axios.post("/api/journals", { content, date, title });
@@ -59,7 +59,7 @@ export const deleteJournal = (date) => {
 };
 
 const reducer = (state = initState, action) => {
-  const { data: prevData, saveCount } = state;
+  const { data: prevData, editCount } = state;
   switch (action.type) {
     case SAVE_JOURNAL:
       const {
@@ -69,7 +69,7 @@ const reducer = (state = initState, action) => {
       return {
         ...state,
         data: newData,
-        saveCount: saveCount + 1,
+        editCount: editCount + 1,
         saved: false,
       };
     case GET_JOURNALS:

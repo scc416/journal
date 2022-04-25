@@ -2,7 +2,6 @@
 
 ## To-do
 
-- saving status
 - search function
 - mobile friendly
 
