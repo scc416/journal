@@ -25,10 +25,22 @@
 .calendar-container {
   display: flex;
   flex-direction: column;
-  width: 20em;
   max-height: 100%;
+  margin-bottom: 1.5em;
 }
 
-.calendar-container > *:first-child {
-  margin-bottom: 3em;
+.calendar-container > *:last-child {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1em;
+}
+
+@media (min-width: 900px) {
+  .calendar-container {
+    width: 20em;
+    margin-bottom: 0;
+  }
 }
