@@ -9,7 +9,7 @@ const ResultListItem = ({ date, title }) => {
   return (
     <Card onClick={clickHandler} interactive={true} elevation={Elevation.TWO}>
       <h5>{getResultDate(date)}</h5>
-      <p>{title}</p>
+      <p>{title || "Untitled"}</p>
     </Card>
   );
 };

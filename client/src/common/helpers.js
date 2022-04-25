@@ -2,7 +2,7 @@ import moment from "moment";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 
 const numOfAlarmMinutes = 60;
-const minDateMonthsBeforeToday = 1;
+const beforeToday = 1;
 
 export const convertTimeToStr = (time) => {
   const str = moment(time).format();
@@ -21,8 +21,12 @@ export const compareDate = (date1, date2) => {
   return formattedDate1 <= formattedDate2;
 };
 
-export const getLatestMinDate = () =>
-  formatDate(moment().subtract(minDateMonthsBeforeToday, "months"));
+export const getLatestMinDate = () => {
+  const min = formatDate(
+    moment().subtract(beforeToday, "months").add(beforeToday, "days")
+  );
+  return min;
+};
 
 export const getMinDate = (date) => {
   const beforeNow = getLatestMinDate();
