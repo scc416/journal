@@ -5,7 +5,7 @@ const queryGenerator = (db) => {
     const queryString = `
       SELECT * FROM journals
       WHERE user_id = $1
-      ORDER BY id;`;
+      ORDER BY date;`;
 
     try {
       const { rows } = await db.query(queryString, values);

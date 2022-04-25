@@ -1,6 +1,6 @@
 import axios from "axios";
 import { displayError } from "../error/errorSlice";
-import { formatJournals, removeKey } from "common/helpers";
+import { formatJournals, removeContent } from "common/helpers";
 
 const initState = { data: {}, gotData: false };
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
@@ -9,7 +9,6 @@ const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
 
 export const saveJournal = (content, date, title) => {
   return async (dispatch) => {
-    console.log(title)
     try {
       await axios.post("/api/journals", { content, date, title });
       dispatch({ type: SAVE_JOURNAL, payload: { date, content, title } });
@@ -33,9 +32,8 @@ export const getJournals = () => {
 export const deleteJournal = (date) => {
   return async (dispatch) => {
     try {
-      console.log(date);
       await axios.delete("/api/journals", { data: { date } });
-      // dispatch({ type: DELETE_JOURNAL, payload: { date } });
+      dispatch({ type: DELETE_JOURNAL, payload: { date } });
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
@@ -59,9 +57,9 @@ const reducer = (state = initState, action) => {
       return { ...state, data: formattedData, gotData: true };
     case DELETE_JOURNAL:
       const {
-        payload: { date: dateToBeDelete },
+        payload: { date: dateToBeClear },
       } = action;
-      const data = removeKey(prevData, dateToBeDelete);
+      const data = removeContent(prevData, dateToBeClear);
       return { ...state, data };
     default:
       return state;

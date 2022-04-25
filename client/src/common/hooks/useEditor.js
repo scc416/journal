@@ -3,8 +3,8 @@ import { EditorState, RichUtils } from "draft-js";
 import { saveJournal, deleteJournal } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
-import { countWords } from "common/helpers";
-
+import { countWords, formatDate } from "common/helpers";
+import moment from "moment";
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
   { style: "ordered-list-item", icon: "numbered-list" },
@@ -52,7 +52,7 @@ const useEditor = (date) => {
       const state = EditorState.createWithContent(content);
       setEditorState(state);
       updateWordCount(state);
-      
+
       updateTitle(data[date].title);
     } else {
       setEditorState(() => EditorState.createEmpty());
@@ -75,7 +75,10 @@ const useEditor = (date) => {
       dispatch(deleteJournal(date));
     } else {
       const rawContent = convertToRaw(content);
-      dispatch(saveJournal(rawContent, date, title));
+      dispatch(
+        // saveJournal(rawContent, formatDate(moment().subtract(20, "days")), title)
+        saveJournal(rawContent, date, title)
+      );
     }
     setEditorState(state);
     updateWordCount(state);

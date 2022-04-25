@@ -1,4 +1,5 @@
 import moment from "moment";
+import { EditorState, convertToRaw } from "draft-js";
 
 export const today = () => moment().toDate();
 export const toDate = (date) => moment(date).toDate();
@@ -19,10 +20,9 @@ export const formatJournals = (data) => {
   return result;
 };
 
-export const removeKey = (journals, date) => {
-  const result = { ...journals };
-  delete result[date];
-  return result;
+export const removeContent = (journals, date) => {
+  const content = convertToRaw(EditorState.createEmpty().getCurrentContent());
+  return { ...journals, [date]: { content, title: "" } };
 };
 
 export const countWords = (str) => {
