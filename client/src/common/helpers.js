@@ -28,6 +28,10 @@ export const getLatestMinDate = () => {
   return min;
 };
 
+export const getStyledDate = (date) => {
+  return moment(date).format("ddd MMM DD YYYY");
+};
+
 export const getMinDate = (date) => {
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
@@ -52,6 +56,11 @@ export const getText = (content) => {
   return convertFromRaw(content).getPlainText();
 };
 
+export const getNextDay = (date) => {
+  const next = moment(date).add(1, "days");
+  return formatDate(next);
+};
+
 export const formatJournals = (data) => {
   const result = {};
   for (const row of data) {
@@ -63,8 +72,9 @@ export const formatJournals = (data) => {
 };
 
 export const removeContent = (journals, date) => {
-  const content = convertToRaw(EditorState.createEmpty().getCurrentContent());
-  return { ...journals, [date]: { content, title: "" } };
+  const result = { ...journals };
+  delete result[date];
+  return result;
 };
 
 export const countWords = (str) => {

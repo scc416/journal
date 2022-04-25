@@ -3,8 +3,8 @@
 ## To-do
 
 - test delete function
-- make last month diary available, even if empty
 - use useState to store value in hooks
+- fix bug when picking month
 - deployment
 
 ## Credits
