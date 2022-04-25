@@ -1,9 +1,20 @@
 # Journal
 
-## To-do
+## Table of Content
 
-- use useState to store value in hooks
-- deployment
+- [Live Demo](#live-demo)
+- [Final Product](#final-product)
+- [Getting Started](#getting-started)
+- [Dependencies](#dependencies)
+- [Credit](#credit)
+
+## Live demo
+
+## Final Product
+
+## Getting Started
+
+## Dependencies
 
 ## Credits
 
