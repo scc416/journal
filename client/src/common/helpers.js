@@ -30,3 +30,7 @@ export const countWords = (str) => {
   const words = str.split(regex).filter((word) => word);
   return words.length;
 };
+
+export const getStatusStr = (saved) => {
+  return saved ? "Saved" : saved === false && "Saving...";
+};

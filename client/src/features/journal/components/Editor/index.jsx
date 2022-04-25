@@ -2,7 +2,7 @@ import "./Editor.css";
 import { Editor } from "draft-js";
 import Title from "./Title";
 import useEditor from "common/hooks/useEditor";
-import EditorButtons from "./EditorButtons";
+import Toolbar from "./Toolbar";
 import { getLongDate } from "common/helpers";
 
 const JournalEditor = ({ date }) => {
@@ -42,11 +42,7 @@ const JournalEditor = ({ date }) => {
           }}
         />
       </div>
-      <div className="Editor-Toolbar">
-        <EditorButtons {...{ mouseDownHandler, styles, lists }} />
-        <div>{saved ? "Saved" : saved === false && "Saving..."}</div>
-        <div>{wordCount}</div>
-      </div>
+      <Toolbar {...{ saved, mouseDownHandler, styles, lists, wordCount }} />
     </div>
   );
 };
