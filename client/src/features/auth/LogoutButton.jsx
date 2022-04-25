@@ -11,7 +11,7 @@ const LogoutButton = () => {
 
   return (
     <div className="Logout-Button">
-      Logged in as @{username}
+      <Button>Logged in as @{username}</Button>
       <Button icon="log-out" onClick={clickHandler} />
     </div>
   );
