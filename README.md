@@ -2,7 +2,7 @@
 
 ## To-do
 
-- able to set title for journal
+- saving status
 - search function
 - mobile friendly
 

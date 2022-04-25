@@ -7,11 +7,12 @@ const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
 const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
 
-export const saveJournal = (content, date) => {
+export const saveJournal = (content, date, title) => {
   return async (dispatch) => {
+    console.log(title)
     try {
-      await axios.post("/api/journals", { content, date });
-      dispatch({ type: SAVE_JOURNAL, payload: { date, content } });
+      await axios.post("/api/journals", { content, date, title });
+      dispatch({ type: SAVE_JOURNAL, payload: { date, content, title } });
     } catch (e) {
       dispatch(displayError(e.response.data));
     }
@@ -46,9 +47,9 @@ const reducer = (state = initState, action) => {
   switch (action.type) {
     case SAVE_JOURNAL:
       const {
-        payload: { date, content },
+        payload: { date, content, title },
       } = action;
-      const newData = { ...prevData, [date]: content };
+      const newData = { ...prevData, [date]: { content, title } };
       return { ...state, data: newData };
     case GET_JOURNALS:
       const {

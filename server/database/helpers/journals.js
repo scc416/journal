@@ -21,15 +21,15 @@ const queryGenerator = (db) => {
 
   const postJournal = async (content, id, date, title) => {
     const values1 = [id, date];
-    const values2 = [JSON.stringify(content), id, date];
-    const values3 = [JSON.stringify(content), id, date, title];
+    const values2 = [JSON.stringify(content), id, date, title];
     const querySelectString = `
       SELECT * FROM journals
       WHERE user_id = $1 AND date = $2;`;
 
     const queryUpdateString = `
       UPDATE journals
-      SET content = $1
+      SET content = $1,
+      title = $4
       WHERE user_id = $2 AND date = $3
       RETURNING *;`;
 
@@ -47,11 +47,11 @@ const queryGenerator = (db) => {
       const { rows } = await db.query(querySelectString, values1);
       const result = rows.length
         ? await db.query(queryUpdateString, values2)
-        : await db.query(queryInsertString, values3);
+        : await db.query(queryInsertString, values2);
 
       if (rows.length > 1) {
-        const values4 = [id, date, rows[0].id];
-        await db.query(queryDeleteString, values4);
+        const values3 = [id, date, rows[0].id];
+        await db.query(queryDeleteString, values3);
       }
 
       return result.rows[0];
@@ -69,7 +69,7 @@ const queryGenerator = (db) => {
       RETURNING *;`;
 
     try {
-      console.log(id, date)
+      console.log(id, date);
       await db.query(queryDeleteString, values);
     } catch (e) {
       throw e;

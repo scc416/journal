@@ -13,8 +13,8 @@ export const getFormattedDate = (date) =>
 export const formatJournals = (data) => {
   const result = {};
   for (const row of data) {
-    const { date, content } = row;
-    result[formatDate(date)] = content;
+    const { date, content, title } = row;
+    result[formatDate(date)] = { title, content };
   }
   return result;
 };

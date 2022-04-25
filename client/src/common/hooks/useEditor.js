@@ -14,9 +14,25 @@ const lists = [
 const useEditor = (date) => {
   const data = useSelector(({ journals: { data } }) => data);
 
+  const titleRef = useRef();
+
+  const titleKeyDownHandler = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  };
+
+  const titleKeyUpHandler = (e) => {
+    const val = e.target.value;
+    titleRef.current.value = val.replace(/\n/g, " ");
+    titleRef.current.height = "auto";
+    titleRef.current.height = titleRef.current.scrollHeight + "px";
+    onChange();
+  };
+
   const [editorState, setEditorState] = useState(() =>
     date in data
-      ? EditorState.createWithContent(convertFromRaw(data[date]))
+      ? EditorState.createWithContent(convertFromRaw(data[date].content))
       : EditorState.createEmpty()
   );
   const [wordCount, setWordCount] = useState(
@@ -32,12 +48,16 @@ const useEditor = (date) => {
 
   useEffect(() => {
     if (date in data) {
-      const content = convertFromRaw(data[date]);
-      setEditorState(EditorState.createWithContent(content));
-      updateWordCount(EditorState.createWithContent(content));
+      const content = convertFromRaw(data[date].content);
+      const state = EditorState.createWithContent(content);
+      setEditorState(state);
+      updateWordCount(state);
+      
+      updateTitle(data[date].title);
     } else {
       setEditorState(() => EditorState.createEmpty());
       updateWordCount();
+      updateTitle("");
     }
   }, [date]);
 
@@ -45,19 +65,23 @@ const useEditor = (date) => {
   const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
-  const onChange = (state) => {
+  const onChange = (s) => {
+    const state = s || editorState;
     const content = state.getCurrentContent();
     const isEmpty = !content.hasText();
-    console.log(content.getPlainText());
-    if (isEmpty) {
+    const title = titleRef.current.value;
+
+    if (isEmpty && !title) {
       dispatch(deleteJournal(date));
     } else {
       const rawContent = convertToRaw(content);
-      dispatch(saveJournal(rawContent, date));
+      dispatch(saveJournal(rawContent, date, title));
     }
     setEditorState(state);
     updateWordCount(state);
   };
+
+  const updateTitle = (str) => (titleRef.current.value = str);
 
   const mouseDownHandler = (style, list) => {
     if (!list)
@@ -70,21 +94,6 @@ const useEditor = (date) => {
     };
   };
 
-  const TitleRef = useRef();
-
-  const titleKeyDownHandler = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  };
-
-  const titleKeyUpHandler = (e) => {
-    const val = e.target.value;
-    TitleRef.current.value = val.replace(/\n/g, " ");
-    TitleRef.current.height = "auto";
-    TitleRef.current.height = TitleRef.current.scrollHeight + "px";
-  };
-
   return {
     focusEditor,
     editor,
@@ -94,7 +103,7 @@ const useEditor = (date) => {
     styles,
     lists,
     wordCount,
-    TitleRef,
+    titleRef,
     titleKeyDownHandler,
     titleKeyUpHandler,
   };

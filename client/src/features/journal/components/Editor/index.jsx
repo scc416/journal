@@ -15,7 +15,7 @@ const JournalEditor = ({ date }) => {
     styles,
     lists,
     wordCount,
-    TitleRef,
+    titleRef,
     titleKeyDownHandler,
     titleKeyUpHandler,
   } = useEditor(date);
@@ -28,7 +28,7 @@ const JournalEditor = ({ date }) => {
           large={true}
           placeholder="Title"
           maxLength={60}
-          inputRef={TitleRef}
+          inputRef={titleRef}
           onKeyDown={titleKeyDownHandler}
           onKeyUp={titleKeyUpHandler}
         />

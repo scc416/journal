@@ -7,10 +7,10 @@ module.exports = (db) => {
   const { postJournal, getJournals, deleteJournal } = queryGenerator(db);
 
   router.post("/", async (req, res, next) => {
-    const { content, date } = req.body;
+    const { content, date, title } = req.body;
     const { user_id } = req.session;
     try {
-      await postJournal(content, user_id, date);
+      await postJournal(content, user_id, date, title);
       res.json();
     } catch (error) {
       next(error);
