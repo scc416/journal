@@ -6,6 +6,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+}
+
+.Safety h3,
+.Safety h2 {
+  margin: 0 0 0.5em 0;
+  padding: 0;
+}
+
+.Safety .bp4-button.bp4-large {
+  margin-top: 0.9em;
 }
 
 .dark .Safety {

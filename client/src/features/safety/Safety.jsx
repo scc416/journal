@@ -27,17 +27,17 @@ const Safety = () => {
   return (
     <div className="Safety">
       <form onSubmit={submitHandler}>
-        <FormGroup label={`Enter password for @${username}`}>
-          <InputGroup
-            inputRef={passwordRef}
-            autoComplete="on"
-            large={true}
-            rightElement={
-              <LockButton {...{ showPassword, toggleShowPassword }} />
-            }
-            type={showPassword ? "text" : "password"}
-          />
-        </FormGroup>
+        <h2>Enter password for</h2>
+        <h3>{`@${username}`}</h3>
+        <InputGroup
+          inputRef={passwordRef}
+          autoComplete="on"
+          large={true}
+          rightElement={
+            <LockButton {...{ showPassword, toggleShowPassword }} />
+          }
+          type={showPassword ? "text" : "password"}
+        />
         <Button large={true} type="submit">
           Unlock
         </Button>

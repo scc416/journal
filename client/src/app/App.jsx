@@ -37,7 +37,7 @@ const App = () => {
               <Route path="/journal/:date" element={<Journal />} />
               <Route path="*" element={<Redirect />} />
             </Routes>
-            {locked && <Safety />})
+            {locked && <Safety />}
           </>
         ) : (
           <Routes>
