@@ -9,7 +9,7 @@ import {
   getLatestMinDate,
   getNextDay,
   getStyle,
-  getFirstDay,
+  getMonth,
 } from "common/helpers";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -69,12 +69,8 @@ const useJournal = (date) => {
       if (!formattedDate) {
         navigate(`/journal/${getTodayDate()}`);
       } else if (!dateIsAvailable) {
-        let day = getFirstDay(formattedDate);
-
-        while (disabledDays(day)) {
-          day = getNextDay(day);
-        }
-
+        const month = getMonth(formattedDate);
+        const day = dates.find((date) => date.includes(month));
         navigate(`/journal/${day}`);
       } else if (!correctDateFormat) {
         navigate(`/journal/${formattedDate}`);
@@ -91,6 +87,7 @@ const useJournal = (date) => {
     value: toDate(date),
     date,
     css,
+    dates
   };
 };
 

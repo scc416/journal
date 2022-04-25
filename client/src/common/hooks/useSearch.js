@@ -11,12 +11,17 @@ const useSearch = () => {
   const updateResults = () => {
     const newResults = [];
 
+    const searchLower = search.toLowerCase();
     for (const date in data) {
       const { title, text } = data[date];
-      const searchLower = search.toLowerCase();
-      const foundInTitle = title && title.toLowerCase().includes(searchLower);
-      const foundInContent = text && text.toLowerCase().includes(searchLower);
-      if (foundInTitle || foundInContent) newResults.push({ date, title });
+
+      if (searchLower) {
+        const foundInTitle = title && title.toLowerCase().includes(searchLower);
+        const foundInContent = text && text.toLowerCase().includes(searchLower);
+        if (foundInTitle || foundInContent) newResults.push({ date, title });
+      } else {
+        newResults.push({ date, title });
+      }
     }
 
     const sorted = newResults.sort(({ date }, { date: date2 }) => {
@@ -28,7 +33,7 @@ const useSearch = () => {
 
   useEffect(() => {
     const t = setTimeout(updateResults, 500);
-
+    // console.log("UPDATE RESULT");
     return () => clearTimeout(t);
 
     // eslint-disable-next-line

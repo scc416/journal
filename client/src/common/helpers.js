@@ -4,10 +4,9 @@ import { convertFromRaw } from "draft-js";
 const numOfAlarmMinutes = 60;
 const beforeToday = 1;
 
-export const getFirstDay = (date) => {
+export const getMonth = (date) => {
   const month = moment(date).format("YYYY-MM");
-  const firstDay = formatDate(month);
-  return firstDay;
+  return month;
 };
 
 const convertTimeToStr = (time) => {
