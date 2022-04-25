@@ -21,7 +21,6 @@ const compareDate = (date1, date2) => {
     typeof date1 === "Number" ? date1 : convertTimeToInt(date1);
   const formattedDate2 =
     typeof date2 === "Number" ? date2 : convertTimeToInt(date2);
-  console.log(formattedDate1 - formattedDate2);
   return formattedDate1 < formattedDate2;
 };
 

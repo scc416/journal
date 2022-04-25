@@ -25,7 +25,6 @@ const reducer = (state = initState, action) => {
       const {
         payload: { alarm },
       } = action;
-      console.log(alarm, typeof alarm);
       return { ...state, locked: false, alarm };
     case UPDATE_ALARM:
       const { locked } = state;
@@ -33,7 +32,6 @@ const reducer = (state = initState, action) => {
       const {
         payload: { alarm: newAlarm },
       } = action;
-      console.log(newAlarm, typeof newAlarm);
 
       return { ...state, alarm: newAlarm };
     default:

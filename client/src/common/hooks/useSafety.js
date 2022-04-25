@@ -20,7 +20,6 @@ const useSafety = () => {
   useEffect(() => {
     if (!locked && username) {
       const t = setInterval(() => {
-        console.log(isTimeup(alarm));
         if (isTimeup(alarm)) dispatch(lock);
       }, 1000);
       return () => clearInterval(t);
