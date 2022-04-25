@@ -8,25 +8,13 @@ import {
   compareDate,
   getLatestMinDate,
   getNextDay,
-  getStyledDate,
+  getStyle,
   getFirstDay,
 } from "common/helpers";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getJournals } from "features/journal/journalSlice";
 import { useDispatch } from "react-redux";
-
-const getStyle = (date) => {
-  // Mon Apr 18 2022
-  const formattedDate = getStyledDate(date);
-  return `
-    .calendar-container
-    .DayPicker-Day[aria-label="${formattedDate}"][aria-disabled="false"][aria-selected="false"]
-   .bp4-datepicker-day-wrapper {
-    color: #4f82bd;
-   }
-   `;
-};
 
 const useJournal = (date) => {
   const formattedDate = getFormattedDate(date);
@@ -62,7 +50,7 @@ const useJournal = (date) => {
     }
     const css = cssArr.join("");
     setCss(css);
-    
+
     // eslint-disable-next-line
   }, [journals]);
 

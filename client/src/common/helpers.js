@@ -92,3 +92,14 @@ export const countWords = (str) => {
 export const getStatusStr = (saved) => {
   return saved ? "Saved" : saved === false && "Saving...";
 };
+
+export const getStyle = (date) => {
+  const formattedDate = getStyledDate(date);
+  return `
+    .calendar-container
+    .DayPicker-Day[aria-label="${formattedDate}"][aria-disabled="false"][aria-selected="false"]
+   .bp4-datepicker-day-wrapper {
+    color: #4f82bd;
+   }
+   `;
+};
