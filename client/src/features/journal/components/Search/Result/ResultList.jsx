@@ -1,7 +1,7 @@
 import "./Result.css";
 import ResultListItem from "./ResultListItem";
 
-const Result = ({ results = [] }) => {
+const Result = ({ results }) => {
   const resultElms = results.map((info, i) => (
     <ResultListItem {...info} key={i} />
   ));

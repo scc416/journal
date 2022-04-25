@@ -4,14 +4,14 @@ import SearchInput from "./Search/SearchInput";
 import useSearch from "common/hooks/useSearch";
 import Result from "./Search/Result/ResultList";
 const Content = ({ disabledDays, minDate, value, date }) => {
-  const { search, changeHandler, cancel } = useSearch();
+  const { search, changeHandler, cancel, results } = useSearch();
 
   return (
     <div className="Journal">
       <div className="calendar-container">
         <SearchInput {...{ search, changeHandler, cancel }} />
         {search ? (
-          <Result />
+          <Result results={results} />
         ) : (
           <Calendar {...{ disabledDays, minDate, value }} />
         )}
