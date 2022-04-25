@@ -1,6 +1,5 @@
 import { Editor } from "draft-js";
 import Title from "./Title";
-import { getLongDate } from "common/helpers";
 import Date from "./Date";
 
 const Main = ({

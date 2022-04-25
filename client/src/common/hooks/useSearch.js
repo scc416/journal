@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import useShowPassword from "./useShowPassword";
 
 const useSearch = () => {
   const [search, setSearch] = useState("");
@@ -26,7 +25,10 @@ const useSearch = () => {
     const t = setTimeout(updateResults, 500);
 
     return () => clearTimeout(t);
+
+    // eslint-disable-next-line
   }, [search]);
+
   const changeHandler = (e) => setSearch(e.target.value);
 
   const cancel = () => setSearch("");

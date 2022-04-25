@@ -8,8 +8,9 @@ import {
 } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
-import { countWords, formatDate } from "common/helpers";
-import moment from "moment";
+import { countWords } from "common/helpers";
+// import { countWords, formatDate } from "common/helpers";
+// import moment from "moment";
 
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
@@ -67,6 +68,8 @@ const useEditor = (date) => {
       updateWordCount();
       updateTitle("");
     }
+
+    // eslint-disable-next-line
   }, [date]);
 
   const editor = useRef(null);
@@ -110,6 +113,7 @@ const useEditor = (date) => {
       const t = setTimeout(() => dispatch(clearStatus), showSavedTimeout);
       return () => clearTimeout(t);
     }
+    // eslint-disable-next-line
   }, [saved]);
 
   return {

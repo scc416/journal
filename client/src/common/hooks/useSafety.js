@@ -13,6 +13,8 @@ const useSafety = () => {
 
   useEffect(() => {
     if (username === "") dispatch(unlock);
+
+    // eslint-disable-next-line
   }, [username]);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const useSafety = () => {
       }, 2000);
       return () => clearInterval(t);
     }
+    // eslint-disable-next-line
   }, [locked, alarm, username]);
 
   return locked;
