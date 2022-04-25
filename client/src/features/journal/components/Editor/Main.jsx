@@ -1,6 +1,7 @@
 import { Editor } from "draft-js";
 import Title from "./Title";
 import { getLongDate } from "common/helpers";
+import Date from "./Date";
 
 const Main = ({
   onChange,
@@ -14,7 +15,7 @@ const Main = ({
 }) => {
   return (
     <div>
-      <div>{getLongDate(date)}</div>
+      <Date date={date} />
       <Title
         {...{
           titleRef,
