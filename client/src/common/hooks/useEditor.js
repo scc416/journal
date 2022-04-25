@@ -8,9 +8,15 @@ import {
 } from "features/journal/journalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
+
+
 import { countWords } from "common/helpers";
+
+// Uncomment 2 lines below and comment the line above
+// when adding journal for previous date (before a month)
+
 // import { countWords, formatDate } from "common/helpers";
-import moment from "moment";
+// import moment from "moment";
 
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [

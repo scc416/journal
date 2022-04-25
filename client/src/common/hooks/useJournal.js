@@ -16,13 +16,6 @@ import { useSelector } from "react-redux";
 import { getJournals } from "features/journal/journalSlice";
 import { useDispatch } from "react-redux";
 
-const css2 = `
-.calendar-container
-.DayPicker-Day[aria-disabled="false"][aria-selected="false"]
-.bp4-datepicker-day-wrapper {
-color: #4f82bd;
-}`;
-
 const getStyle = (date) => {
   // Mon Apr 18 2022
   const formattedDate = getStyledDate(date);
@@ -69,7 +62,8 @@ const useJournal = (date) => {
     }
     const css = cssArr.join("");
     setCss(css);
-    console.log("update css");
+    
+    // eslint-disable-next-line
   }, [journals]);
 
   const dateIsAvailable = !disabledDays(date);
@@ -85,7 +79,6 @@ const useJournal = (date) => {
   useEffect(() => {
     if (gotData) {
       if (!formattedDate) {
-        console.log("navigate(`/journal/${getTodayDate()}`)");
         navigate(`/journal/${getTodayDate()}`);
       } else if (!dateIsAvailable) {
         let day = getFirstDay(formattedDate);
