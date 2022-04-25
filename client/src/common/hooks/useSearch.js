@@ -19,11 +19,11 @@ const useSearch = () => {
       if (foundInTitle || foundInContent) newResults.push({ date, title });
     }
 
-    setResults(
-      newResults.sort(({ date }, { date: date2 }) => {
-        return compareDate(date, date2) ? 1 : -1;
-      })
-    );
+    const sorted = newResults.sort(({ date }, { date: date2 }) => {
+      return compareDate(date, date2) ? 1 : -1;
+    });
+
+    setResults(sorted);
   };
 
   useEffect(() => {
