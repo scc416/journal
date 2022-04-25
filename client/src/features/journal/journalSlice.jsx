@@ -50,7 +50,15 @@ export const getJournals = () => {
 export const deleteJournal = (date) => {
   return async (dispatch) => {
     try {
-      await axios.delete("/api/journals", { data: { date } });
+      setTimeout(async () => {
+        const {
+          journals: { editCount: newCount },
+        } = getState();
+        if (oldCount === newCount) {
+          await axios.delete("/api/journals", { data: { date } });
+          dispatch({ type: UPDATE_SAVED });
+        }
+      }, saveTimeout);
       dispatch({ type: DELETE_JOURNAL, payload: { date } });
     } catch (e) {
       dispatch(displayError(e.response.data));
@@ -84,7 +92,7 @@ const reducer = (state = initState, action) => {
         payload: { date: dateToBeClear },
       } = action;
       const data = removeContent(prevData, dateToBeClear);
-      return { ...state, data };
+      return { ...state, data, editCount: editCount + 1 };
     case UPDATE_SAVED:
       return { ...state, saved: true };
     case REMOVE_SAVED:
