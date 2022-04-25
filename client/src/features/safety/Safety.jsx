@@ -1,5 +1,5 @@
 import "./Safety.css";
-import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
+import { Button, InputGroup } from "@blueprintjs/core";
 import useCurrentUser from "common/hooks/useCurrentUser";
 import useShowPassword from "common/hooks/useShowPassword";
 import LockButton from "features/auth/LockButton";
@@ -16,7 +16,7 @@ const Safety = () => {
 
   const clearPassword = () => (passwordRef.current.value = "");
 
-  const sucessFn = () => dispatch(unlock);
+  const sucessFn = () => dispatch(unlock());
 
   const submitHandler = (e) => {
     e.preventDefault();

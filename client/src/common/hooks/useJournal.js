@@ -5,6 +5,7 @@ import {
   getFormattedDate,
   getTodayDate,
   formatDate,
+  getMinDate,
 } from "common/helpers";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -20,7 +21,7 @@ const useJournal = (date) => {
     }
   );
   const dates = Object.keys(journals);
-  const minDate = (dates.length && toDate(dates[0])) || today();
+  const minDate = getMinDate(dates.length && toDate(dates[0]));
   const dispatch = useDispatch();
 
   const disabledDays = (date) => {

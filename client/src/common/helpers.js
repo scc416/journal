@@ -1,10 +1,35 @@
 import moment from "moment";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 
-const numOfAlarmMinutes = 10;
+const numOfAlarmMinutes = 60;
+const minDateMonthsBeforeToday = 1;
+
+export const convertTimeToInt = (time) => {
+  const str = moment(time).format("x");
+  const int = parseInt(str);
+  return int;
+};
 
 export const getAlarm = () => {
-  return moment().add(numOfAlarmMinutes, "seconds").toString();
+  const alarm = moment().add(numOfAlarmMinutes, "seconds");
+  const int = convertTimeToInt(alarm);
+  return int;
+};
+
+const compareDate = (date1, date2) => {
+  const formattedDate1 =
+    typeof date1 === "Number" ? date1 : convertTimeToInt(date1);
+  const formattedDate2 =
+    typeof date2 === "Number" ? date2 : convertTimeToInt(date2);
+  console.log(formattedDate1 - formattedDate2);
+  return formattedDate1 < formattedDate2;
+};
+
+export const getMinDate = (date) => {
+  const beforeNow = moment().subtract(minDateMonthsBeforeToday, "months");
+  const dateIsEarlier = compareDate(beforeNow, date);
+  if (dateIsEarlier) return date;
+  return beforeNow.toDate();
 };
 
 export const today = () => moment().toDate();
@@ -15,7 +40,7 @@ const checkIfValid = (date) => moment(date).isValid();
 export const getResultDate = (date) => moment(date).format("MMMM D, YYYY");
 export const getLongDate = (date) => moment(date).format("dddd, MMMM D, YYYY");
 
-export const isTimeup = (date) => moment() > moment(date);
+export const isTimeup = (date) => compareDate(date);
 
 export const getFormattedDate = (date) =>
   checkIfValid(date) && formatDate(date);

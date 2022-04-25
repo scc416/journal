@@ -19,7 +19,7 @@ const App = () => {
   const { darkMode, toggleDarkMode } = useMode();
   const locked = useSafety();
   const dispatch = useDispatch();
-  const handler = () => dispatch(updateAlarm);
+  const handler = () => dispatch(updateAlarm());
 
   return (
     <div

@@ -7,10 +7,14 @@ const UNLOCK = "safety/UNLOCK";
 const UPDATE_ALARM = "safety/UPDATE_ALARM";
 
 export const lock = { type: LOCK };
-export const unlock = { type: UNLOCK, payload: { alarm: getAlarm() } };
-export const updateAlarm = {
-  type: UPDATE_ALARM,
-  payload: { alarm: getAlarm() },
+export const unlock = () => {
+  return { type: UNLOCK, payload: { alarm: getAlarm() } };
+};
+export const updateAlarm = () => {
+  return {
+    type: UPDATE_ALARM,
+    payload: { alarm: getAlarm() },
+  };
 };
 
 const reducer = (state = initState, action) => {
@@ -21,6 +25,7 @@ const reducer = (state = initState, action) => {
       const {
         payload: { alarm },
       } = action;
+      console.log(alarm, typeof alarm);
       return { ...state, locked: false, alarm };
     case UPDATE_ALARM:
       const { locked } = state;
@@ -28,6 +33,8 @@ const reducer = (state = initState, action) => {
       const {
         payload: { alarm: newAlarm },
       } = action;
+      console.log(newAlarm, typeof newAlarm);
+
       return { ...state, alarm: newAlarm };
     default:
       return state;
