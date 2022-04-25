@@ -1,5 +1,6 @@
 import { Card, Elevation } from "@blueprintjs/core";
 import { useNavigate } from "react-router-dom";
+import { getResultDate } from "common/helpers";
 
 const ResultListItem = ({ date, title }) => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const ResultListItem = ({ date, title }) => {
 
   return (
     <Card onClick={clickHandler} interactive={true} elevation={Elevation.TWO}>
-      <h5>{date}</h5>
+      <h5>{getResultDate(date)}</h5>
       <p>{title}</p>
     </Card>
   );
