@@ -13,11 +13,11 @@ const useSafety = () => {
     if (!locked) {
       const t = setInterval(() => {
         if (new Date(getNow()) > new Date(alarm)) dispatch(lock);
-        console.log(getNow(), alarm);
-      }, 1000);
+        console.log("alarm in interval", alarm);
+      }, 2000);
       return () => clearInterval(t);
     }
-  }, [locked]);
+  }, [locked, alarm]);
 
   return locked;
 };
