@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getCurrentUser } from "features/auth/authSlice";
 
-const useCheckedAuth = () => {
+const useCurrentUser = () => {
   const dispatch = useDispatch();
 
   const { hasCheckedUsername, username } = useSelector(({ username }) => {
@@ -19,4 +19,4 @@ const useCheckedAuth = () => {
   return { hasCheckedUsername, username };
 };
 
-export default useCheckedAuth;
+export default useCurrentUser;

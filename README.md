@@ -6,7 +6,6 @@
 - search function
 - show "logged in as ..."
 - mobile friendly
-- unable to put new line into title
 
 ## Credits
 

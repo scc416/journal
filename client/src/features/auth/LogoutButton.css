@@ -1,5 +1,9 @@
-.LogoutButton {
+.Logout-Button {
   position: absolute;
   top: 1em;
   right: 1em;
+}
+
+.Logout-Button > * {
+  margin-left: 0.7em;
 }
