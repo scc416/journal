@@ -73,7 +73,6 @@ const reducer = (state = initState, action) => {
   const { data: prevData, editCount } = state;
   switch (action.type) {
     case SAVE_JOURNAL:
-      console.log("SAVE_JOURNAL");
       const {
         payload: { date, content, title },
       } = action;
@@ -86,15 +85,12 @@ const reducer = (state = initState, action) => {
         saved: false,
       };
     case GET_JOURNALS:
-      console.log("GET_JOURNALS");
       const {
         payload: { data: receivedData },
       } = action;
       const formattedData = formatJournals(receivedData);
       return { ...state, data: formattedData, gotData: true };
     case DELETE_JOURNAL:
-      console.log("DELETE_JOURNALS");
-
       const {
         payload: { date: dateToBeClear },
       } = action;
