@@ -6,6 +6,7 @@ const numOfAlarmMinutes = 10;
 export const getAlarm = () => {
   return moment().add(numOfAlarmMinutes, "seconds").toString();
 };
+
 export const today = () => moment().toDate();
 export const toDate = (date) => moment(date).toDate();
 export const getTodayDate = () => moment().format("YYYY-MM-DD");
