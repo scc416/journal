@@ -6,6 +6,16 @@ const PORT = process.env.PORT || 3001;
 const express = require("express");
 const app = express();
 
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "https://the-journals.netlify.app/",
+  methods: "GET,POST",
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+
 // Set up cookie-session
 const cookieSession = require("cookie-session");
 app.use(cookieSession({ secret: process.env.SECRET }));
