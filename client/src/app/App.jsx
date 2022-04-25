@@ -11,14 +11,23 @@ import ToggleDarkModeButton from "features/mode/ToggleDarkModeButton";
 import Error from "features/error/Error";
 import Safety from "features/safety/Safety";
 import useSafety from "common/hooks/useSafety";
+import { updateAlarm } from "features/safety/safetySlice";
+import { useDispatch } from "react-redux";
 
 const App = () => {
   const { hasCheckedUsername, username } = useCurrentUser();
   const { darkMode, toggleDarkMode } = useMode();
   const locked = useSafety();
+  const dispatch = useDispatch();
+  const handler = () => dispatch(updateAlarm);
 
   return (
-    <div className={darkMode ? "bp4-dark dark" : "bright"}>
+    <div
+      className={darkMode ? "bp4-dark dark" : "bright"}
+      onClick={handler}
+      onMouseMove={handler}
+      onKeyDown={handler}
+    >
       <Error />
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
       {hasCheckedUsername ? (

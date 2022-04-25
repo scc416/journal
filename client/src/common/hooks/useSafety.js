@@ -21,7 +21,7 @@ const useSafety = () => {
     if (!locked && username) {
       const t = setInterval(() => {
         if (new Date(getNow()) > new Date(alarm)) dispatch(lock);
-      }, 2000);
+      }, 5000);
       return () => clearInterval(t);
     }
     // eslint-disable-next-line
