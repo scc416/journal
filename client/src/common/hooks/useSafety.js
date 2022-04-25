@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { isTimeup } from "common/helpers";
+import { isTimeUp } from "common/helpers";
 import { lock, unlock } from "features/safety/safetySlice";
 const useSafety = () => {
   const { alarm, locked, username } = useSelector(
@@ -20,7 +20,7 @@ const useSafety = () => {
   useEffect(() => {
     if (!locked && username) {
       const t = setInterval(() => {
-        if (isTimeup(alarm)) dispatch(lock);
+        if (isTimeUp(alarm)) dispatch(lock);
       }, 1000);
       return () => clearInterval(t);
     }

@@ -10,7 +10,7 @@ export const getFirstDay = (date) => {
   return firstDay;
 };
 
-export const convertTimeToStr = (time) => {
+const convertTimeToStr = (time) => {
   const str = moment(time).format();
   return str;
 };
@@ -53,7 +53,7 @@ const checkIfValid = (date) => moment(date).isValid();
 export const getResultDate = (date) => moment(date).format("MMMM D, YYYY");
 export const getLongDate = (date) => moment(date).format("dddd, MMMM D, YYYY");
 
-export const isTimeup = (date) => compareDate(date);
+export const isTimeUp = (date) => compareDate(date);
 
 export const getFormattedDate = (date) =>
   checkIfValid(date) && formatDate(date);
