@@ -34,7 +34,7 @@
   flex-direction: column;
   font-size: 1.3em;
   height: 100%;
-  word-break: break-all;
+  word-break: break-word;
 }
 
 textarea {
@@ -56,7 +56,7 @@ textarea {
   height: 1.5em;
   width: 100%;
   font-family: "Open Sans";
-  font-size: 2.2em;
+  font-size: 2em;
   font-weight: 700;
 }
 

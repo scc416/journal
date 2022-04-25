@@ -40,10 +40,9 @@ const JournalEditor = ({ date }) => {
         <TextArea
           large={true}
           placeholder="Title"
-          growVertically={true}
+          maxLength={60}
+          // growVertically={true}
           inputRef={textAreaRef}
-          // onChange={changeHandler}
-          // value={this.state.value}
           onKeyDown={keyDownHandler}
           onKeyUp={keyUpHandler}
         />
