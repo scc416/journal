@@ -14,8 +14,8 @@ const useSearch = () => {
     for (const date in data) {
       const { title, text } = data[date];
       const searchLower = search.toLowerCase();
-      const foundInTitle = title.toLowerCase().includes(searchLower);
-      const foundInContent = text.toLowerCase().includes(searchLower);
+      const foundInTitle = title && title.toLowerCase().includes(searchLower);
+      const foundInContent = text && text.toLowerCase().includes(searchLower);
       if (foundInTitle || foundInContent) newResults.push({ date, title });
     }
 

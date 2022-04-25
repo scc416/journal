@@ -12,18 +12,17 @@ const useSafety = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(username);
-    if (!username && username !== null) dispatch(unlock);
+    if (username === "") dispatch(unlock);
   }, [username]);
 
   useEffect(() => {
-    if (!locked) {
+    if (!locked && username) {
       const t = setInterval(() => {
         if (new Date(getNow()) > new Date(alarm)) dispatch(lock);
       }, 2000);
       return () => clearInterval(t);
     }
-  }, [locked, alarm]);
+  }, [locked, alarm, username]);
 
   return locked;
 };
