@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const ResultListItem = ({ date, title }) => {
   const navigate = useNavigate();
-  const clickHandler = () => navigate(`journal/${date}`);
+  const clickHandler = () => navigate(`/journal/${date}`);
 
   return (
     <Card onClick={clickHandler} interactive={true} elevation={Elevation.TWO}>
