@@ -1,6 +1,8 @@
 import moment from "moment";
 import { EditorState, convertToRaw, convertFromRaw } from "draft-js";
 
+export const getNow = () => moment().toString();
+export const getAlarm = () => moment().add(1, "minutes").toString();
 export const today = () => moment().toDate();
 export const toDate = (date) => moment(date).toDate();
 export const getTodayDate = () => moment().format("YYYY-MM-DD");

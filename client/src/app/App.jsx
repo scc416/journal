@@ -9,10 +9,13 @@ import useCurrentUser from "common/hooks/useCurrentUser";
 import useMode from "common/hooks/useMode";
 import ToggleDarkModeButton from "features/mode/ToggleDarkModeButton";
 import Error from "features/error/Error";
+import Safety from "features/safety/Safety";
+import useSafety from "common/hooks/useSafety";
 
 const App = () => {
   const { hasCheckedUsername, username } = useCurrentUser();
   const { darkMode, toggleDarkMode } = useMode();
+  const locked = useSafety();
 
   return (
     <div className={darkMode ? "bp4-dark dark" : "bright"}>
@@ -20,10 +23,14 @@ const App = () => {
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
       {hasCheckedUsername ? (
         username ? (
-          <Routes>
-            <Route path="/journal/:date" element={<Journal />} />
-            <Route path="*" element={<Redirect />} />
-          </Routes>
+          locked ? (
+            <Safety />
+          ) : (
+            <Routes>
+              <Route path="/journal/:date" element={<Journal />} />
+              <Route path="*" element={<Redirect />} />
+            </Routes>
+          )
         ) : (
           <Routes>
             <Route path="/login" element={<LogIn />} />
