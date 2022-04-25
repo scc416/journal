@@ -36,12 +36,6 @@
   align-items: flex-end;
 }
 
-.calendar-container
-  .DayPicker-Day[aria-disabled="false"][aria-selected="false"]
-  .bp4-datepicker-day-wrapper {
-  color: #4f82bd;
-}
-
 @media (min-width: 420px) {
   .calendar-container {
     flex-direction: row;

@@ -13,6 +13,24 @@ import { useSelector } from "react-redux";
 import { getJournals } from "features/journal/journalSlice";
 import { useDispatch } from "react-redux";
 
+const css = `
+.calendar-container
+.DayPicker-Day[aria-disabled="false"][aria-selected="false"]
+.bp4-datepicker-day-wrapper {
+color: #4f82bd;
+}`;
+
+const getStyle = (date) => {
+  // Mon Apr 18 2022
+  const formattedDate = date;
+  return `
+    .calendar-container
+    .DayPicker-Day[aria-label=${formattedDate}][aria-disabled="false"][aria-selected="false"]
+   .bp4-datepicker-day-wrapper {
+    color: #4f82bd;
+   }`;
+};
+
 const useJournal = (date) => {
   const formattedDate = getFormattedDate(date);
   const navigate = useNavigate();
@@ -61,6 +79,7 @@ const useJournal = (date) => {
     minDate,
     value: toDate(date),
     date,
+    css,
   };
 };
 

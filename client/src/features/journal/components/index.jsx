@@ -7,10 +7,12 @@ import Main from "./Main";
 
 const Journal = () => {
   const { date } = useParams();
-  const { validDate, disabledDays, minDate, value, gotData } = useJournal(date);
+  const { validDate, disabledDays, minDate, value, gotData, css } =
+    useJournal(date);
 
   return (
     <>
+      <style>{css}</style>
       <LogoutButton />
       {gotData && validDate ? (
         <Main {...{ disabledDays, minDate, value, date }} />
