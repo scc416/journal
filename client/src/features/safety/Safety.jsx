@@ -1,3 +1,4 @@
+import "./Safety.css";
 import { Button, InputGroup, FormGroup } from "@blueprintjs/core";
 import useCurrentUser from "common/hooks/useCurrentUser";
 import useShowPassword from "common/hooks/useShowPassword";
@@ -24,22 +25,24 @@ const Safety = () => {
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <FormGroup label={`Enter password for @${username}`}>
-        <InputGroup
-          inputRef={passwordRef}
-          autoComplete="on"
-          large={true}
-          rightElement={
-            <LockButton {...{ showPassword, toggleShowPassword }} />
-          }
-          type={showPassword ? "text" : "password"}
-        />
-      </FormGroup>
-      <Button large={true} type="submit">
-        Unlock
-      </Button>
-    </form>
+    <div className="Safety">
+      <form onSubmit={submitHandler}>
+        <FormGroup label={`Enter password for @${username}`}>
+          <InputGroup
+            inputRef={passwordRef}
+            autoComplete="on"
+            large={true}
+            rightElement={
+              <LockButton {...{ showPassword, toggleShowPassword }} />
+            }
+            type={showPassword ? "text" : "password"}
+          />
+        </FormGroup>
+        <Button large={true} type="submit">
+          Unlock
+        </Button>
+      </form>
+    </div>
   );
 };
 

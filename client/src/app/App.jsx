@@ -23,14 +23,13 @@ const App = () => {
       <ToggleDarkModeButton {...{ darkMode, toggleDarkMode }} />
       {hasCheckedUsername ? (
         username ? (
-          locked ? (
-            <Safety />
-          ) : (
+          <>
             <Routes>
               <Route path="/journal/:date" element={<Journal />} />
               <Route path="*" element={<Redirect />} />
             </Routes>
-          )
+            {locked && <Safety />})
+          </>
         ) : (
           <Routes>
             <Route path="/login" element={<LogIn />} />
