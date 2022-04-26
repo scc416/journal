@@ -39,11 +39,19 @@ export const getLatestMinDate = () => {
   return min;
 };
 
+export const addDate = (arr, date) => {
+  const alreadyExisted = arr.includes(date);
+  if (alreadyExisted) return arr;
+  return arr.concat([date]).sort();
+};
+
 export const getStyledDate = (date) => {
   return moment(date).format("ddd MMM DD YYYY");
 };
 
-export const getMinDate = (date) => {
+export const getMinDate = (date, dates, p) => {
+  console.log(dates);
+  console.log(p);
   console.log(date);
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
