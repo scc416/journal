@@ -38,16 +38,18 @@ The app is locked when:
 - The window is first loaded (if user is logged in)
 - The window is inactive (no mouse/keyboard movement) for 3 minutes
 
-The user has to entered the password to unlock.
+The user has to enter the password to unlock.
 ![Lock](./docs/lock.png)
 
 ### Responsive Design
 
 - View on tablet
-  ![Tablet](./docs/tablet.png)
+
+![Tablet](./docs/tablet.png)
 
 - View on phone
-  ![Phone](./docs/mobile.png)
+
+![Phone](./docs/mobile.png)
 
 ### Error Handling
 
