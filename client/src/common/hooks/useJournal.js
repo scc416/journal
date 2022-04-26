@@ -38,13 +38,14 @@ const useJournal = (date) => {
   };
 
   const formattedDate = getFormattedDate(date);
+
   const dates = Object.keys(journals)
     .concat(prevDates)
-    .sort(({ date }, { date: date2 }) => {
-      return compareDate(date, date2) ? 1 : -1;
+    .sort((date, date2) => {
+      return compareDate(date, date2) ? -1 : 1;
     });
 
-  const minDate = getMinDate(dates.length && dates[0]);
+  const minDate = getMinDate(dates.length && dates[0], dates, prevDates);
   const dateIsAvailable = !disabledDays(date);
   const correctDateFormat = formattedDate === date;
   const validDate = formattedDate && dateIsAvailable && correctDateFormat;
