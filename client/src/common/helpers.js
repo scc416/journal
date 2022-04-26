@@ -50,9 +50,6 @@ export const getStyledDate = (date) => {
 };
 
 export const getMinDate = (date, dates, p) => {
-  console.log(dates);
-  console.log(p);
-  console.log(date);
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
   if (dateIsEarlier) return moment(date).toDate();
