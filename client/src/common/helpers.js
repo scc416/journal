@@ -1,11 +1,11 @@
 import moment from "moment";
 import { convertFromRaw } from "draft-js";
 
-const numOfAlarmMinutes = 60;
+const numOfAlarmMinutes = 3;
 const beforeToday = 1;
 
 const getMonth = (date) => {
-  const month = moment(date).format("YYYY-MM");
+  const month = moment.utc(date).format("YYYY-MM");
   return month;
 };
 
@@ -16,47 +16,48 @@ export const getAvailableDate = (date, dates) => {
 };
 
 const convertTimeToStr = (time) => {
-  const str = moment(time).format();
+  const str = moment.utc(time).format();
   return str;
 };
 
 export const getAlarm = () => {
-  const alarm = moment().add(numOfAlarmMinutes, "seconds");
+  const alarm = moment.utc().add(numOfAlarmMinutes, "minutes");
   const int = convertTimeToStr(alarm);
   return int;
 };
 
 export const compareDate = (date1, date2) => {
-  const formattedDate1 = moment(date1);
-  const formattedDate2 = moment(date2);
+  const formattedDate1 = moment.utc(date1);
+  const formattedDate2 = moment.utc(date2);
   return formattedDate1 <= formattedDate2;
 };
 
 export const getLatestMinDate = () => {
   const min = formatDate(
-    moment().subtract(beforeToday, "months").add(beforeToday, "days")
+    moment.utc().subtract(beforeToday, "months").add(beforeToday, "days")
   );
   return min;
 };
 
 export const getStyledDate = (date) => {
-  return moment(date).format("ddd MMM DD YYYY");
+  return moment.utc(date).format("ddd MMM DD YYYY");
 };
 
 export const getMinDate = (date) => {
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
-  if (dateIsEarlier) return moment(date).toDate();
-  return moment(beforeNow).toDate();
+  if (dateIsEarlier) return moment.utc(date).toDate();
+  return moment.utc(beforeNow).toDate();
 };
 
-export const today = () => moment().toDate();
-export const toDate = (date) => moment(date).toDate();
-export const getTodayDate = () => moment().format("YYYY-MM-DD");
-export const formatDate = (date) => moment(date).format("YYYY-MM-DD");
-const checkIfValid = (date) => moment(date).isValid();
-export const getResultDate = (date) => moment(date).format("MMMM D, YYYY");
-export const getLongDate = (date) => moment(date).format("dddd, MMMM D, YYYY");
+export const today = () => moment.utc().toDate();
+export const toDate = (date) => moment.utc(date).toDate();
+export const getTodayDate = () => moment.utc().format("YYYY-MM-DD");
+export const formatDate = (date) => moment.utc(date).format("YYYY-MM-DD");
+const checkIfValid = (date) => moment.utc(date).isValid();
+export const getResultDate = (date) => moment.utc(date).format("MMMM D, YYYY");
+export const getLongDate = (date) =>
+  moment.utc(date).format("dddd, MMMM D, YYYY");
 
 export const isTimeUp = (date) => compareDate(date);
 
@@ -68,7 +69,7 @@ export const getText = (content) => {
 };
 
 export const getNextDay = (date) => {
-  const next = moment(date).add(1, "days");
+  const next = moment.utc(date).add(1, "days");
   return formatDate(next);
 };
 
