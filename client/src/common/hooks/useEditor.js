@@ -9,13 +9,13 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { convertFromRaw, convertToRaw } from "draft-js";
 
-import { countWords } from "common/helpers";
+// import { countWords } from "common/helpers";
 
 // Uncomment 2 lines below and comment the line above
 // when adding journal for previous date (before a month)
 
-// import { countWords, formatDate } from "common/helpers";
-// import moment from "moment";
+import { countWords, formatDate } from "common/helpers";
+import moment from "moment";
 
 const styles = ["BOLD", "ITALIC", "UNDERLINE"];
 const lists = [
@@ -77,7 +77,7 @@ const useEditor = (date) => {
   }, [date]);
 
   const editor = useRef(null);
-  
+
   const focusEditor = () => editor.current.focus();
   const dispatch = useDispatch();
 
@@ -92,8 +92,8 @@ const useEditor = (date) => {
     } else {
       const rawContent = convertToRaw(content);
       dispatch(
-        // saveJournal(rawContent, formatDate(moment().subtract(40, "days")), title)
-        saveJournal(rawContent, date, title)
+        saveJournal(rawContent, formatDate(moment().subtract(1000, "days")), title)
+        // saveJournal(rawContent, date, title)
       );
     }
     setEditorState(state);

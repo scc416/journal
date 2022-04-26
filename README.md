@@ -1,5 +1,10 @@
 # Journal
 
+## to-do
+
+- fix delete problem
+- fix date problem on deployment
+
 ## Table of Content
 
 - [Live Demo](#live-demo)

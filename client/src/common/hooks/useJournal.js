@@ -22,9 +22,9 @@ const useJournal = (date) => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-  const { journals, gotData } = useSelector(
-    ({ journals: { data, gotData } }) => {
-      return { journals: data, gotData };
+  const { journals, gotData, prevDates } = useSelector(
+    ({ journals: { data, gotData, prevDates } }) => {
+      return { journals: data, gotData, prevDates };
     }
   );
 
@@ -33,11 +33,17 @@ const useJournal = (date) => {
     const hasJorunal = dates.includes(formatDate(date));
     const isToday = formatted === getTodayDate();
     const afterMinDate = compareDate(getLatestMinDate(), date);
-    return !hasJorunal && !isToday && !afterMinDate;
+    const inPreviousDate = prevDates.includes(date);
+    return !hasJorunal && !isToday && !afterMinDate && !inPreviousDate;
   };
 
   const formattedDate = getFormattedDate(date);
-  const dates = Object.keys(journals);
+  const dates = Object.keys(journals)
+    .concat(prevDates)
+    .sort(({ date }, { date: date2 }) => {
+      return compareDate(date, date2) ? 1 : -1;
+    });
+
   const minDate = getMinDate(dates.length && dates[0]);
   const dateIsAvailable = !disabledDays(date);
   const correctDateFormat = formattedDate === date;
@@ -68,7 +74,7 @@ const useJournal = (date) => {
       if (!formattedDate) {
         navigate(`/journal/${getTodayDate()}`);
       } else if (!dateIsAvailable) {
-        const day = getAvailableDate(formattedDate, dates);
+        const day = getAvailableDate(formattedDate, dates) || getTodayDate();
         navigate(`/journal/${day}`);
       } else if (!correctDateFormat) {
         navigate(`/journal/${formattedDate}`);

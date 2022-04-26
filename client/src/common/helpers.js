@@ -44,6 +44,7 @@ export const getStyledDate = (date) => {
 };
 
 export const getMinDate = (date) => {
+  console.log(date);
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
   if (dateIsEarlier) return moment(date).toDate();
@@ -74,12 +75,15 @@ export const getNextDay = (date) => {
 
 export const formatJournals = (data) => {
   const result = {};
+  const dates = [];
   for (const row of data) {
     const { date, content, title } = row;
     const text = getText(content);
-    result[formatDate(date)] = { title, content, text };
+    const formatedDate = formatDate(date);
+    result[formatedDate] = { title, content, text };
+    dates.push(formatedDate);
   }
-  return result;
+  return [result, dates];
 };
 
 export const removeContent = (journals, date) => {
