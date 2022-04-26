@@ -43,7 +43,7 @@ export const getStyledDate = (date) => {
   return moment(date).format("ddd MMM DD YYYY");
 };
 
-export const getMinDate = (date, dates, p) => {
+export const getMinDate = (date) => {
   const beforeNow = getLatestMinDate();
   const dateIsEarlier = compareDate(date, beforeNow);
   if (dateIsEarlier) return moment(date).toDate();
