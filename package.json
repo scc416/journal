@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node rserve/server.js"
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
