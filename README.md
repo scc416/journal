@@ -1,5 +1,7 @@
 # Journal
 
+A full-stack journal web app with Node.js, Express, PostgreSQL, React, Redux and Blueprint. An attempt to replicate the [Mini Diary](https://github.com/samuelmeuli/mini-diary).
+
 ## Table of Content
 
 - [Live Demo](#live-demo)
