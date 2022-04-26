@@ -39,12 +39,6 @@ export const getLatestMinDate = () => {
   return min;
 };
 
-export const addDate = (arr, date) => {
-  const alreadyExisted = arr.includes(date);
-  if (alreadyExisted) return arr;
-  return arr.concat([date]).sort();
-};
-
 export const getStyledDate = (date) => {
   return moment(date).format("ddd MMM DD YYYY");
 };
