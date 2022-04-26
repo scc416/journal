@@ -14,7 +14,11 @@ const Safety = () => {
   const passwordRef = useRef();
   const dispatch = useDispatch();
 
-  const clearPassword = () => (passwordRef.current.value = "");
+  const clearPassword = () => {
+    if (passwordRef.current) {
+      passwordRef.current.value = "";
+    }
+  };
 
   const sucessFn = () => dispatch(unlock());
 
