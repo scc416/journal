@@ -2,7 +2,13 @@ import axios from "axios";
 import { displayError } from "../error/errorSlice";
 import { formatJournals, removeContent, getText } from "common/helpers";
 
-const initState = { data: {}, gotData: false, saved: null, editCount: 0 };
+const initState = {
+  data: {},
+  gotData: false,
+  saved: null,
+  editCount: 0,
+  prevDates: [],
+};
 const SAVE_JOURNAL = "journal/SAVE_JOURNAL";
 const GET_JOURNALS = "journal/GET_JOURNALS";
 const DELETE_JOURNAL = "journal/DELETE_JOURNAL";
@@ -88,8 +94,8 @@ const reducer = (state = initState, action) => {
       const {
         payload: { data: receivedData },
       } = action;
-      const formattedData = formatJournals(receivedData);
-      return { ...state, data: formattedData, gotData: true };
+      const [formattedData, prevDates] = formatJournals(receivedData);
+      return { ...state, prevDates, data: formattedData, gotData: true };
     case DELETE_JOURNAL:
       const {
         payload: { date: dateToBeClear },
