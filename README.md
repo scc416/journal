@@ -15,7 +15,7 @@ A full-stack journal web app with Node.js, Express, PostgreSQL, React, Redux and
 This project was deployed to [Netlify](https://www.netlify.com/):
 https://the-journals.netlify.app/
 
-The [server](https://pet--api.herokuapp.com/) is deployed to [Heroku](https://journal---api.herokuapp.com/).
+The [server](https://pet--api.herokuapp.com/) is deployed to [Heroku](https://journal---api.herokuapp.com/). It might take some time to load up the server.
 
 ## Final Product
 
