@@ -2,8 +2,6 @@
 
 See the `master` branch's `README.md` for information about this application. This `README.md` (on branch `production`) is the documentation of the deployment (changes that need to be made for deployment to happen).
 
-The [server](https://pet--api.herokuapp.com/) is deployed to [Heroku](https://journal---api.herokuapp.com/). [Netlify](https://www.netlify.com/) serves the static [client assets](https://the-journals.netlify.app/).
-
 ## Table of Content
 
 - [Client](#client)
